@@ -47,7 +47,7 @@ MonoBehaviour:
   - personality_humble
   - personality_socialbutterfly
   statChanges:
-  - ST1+10
-  - ST1-10
-  - ST5+5
+  - BRA+2
+  - VIB+2
+  - CHA+2
   noChoiceNextDialogue: {fileID: 0}

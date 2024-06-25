@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
@@ -11,23 +12,29 @@ public class BubbleSpawner : MonoBehaviour
     public List<GameObject> bubbles = new List<GameObject>();
     int currentBubble = 0;
     GameObject bubbleToDelete;
-    bool choicesSpawned = false;
+    public bool choicesSpawned = false;
     public so_dialoguebubble startingDialogue;
     public so_playerstats player;
+    public GameObject abilityCheckShower;
 
     public void Start()
     {
         Button continueButtonButton = continueButton.GetComponent<Button>();
         continueButtonButton.onClick.AddListener(() => SpawnBubble(startingDialogue));
+        Debug.Log("Start() called with" + startingDialogue);
+        player.ResetStats();
     }
 
     public void SpawnBubble(so_dialoguebubble dialogue)
     {
+        Debug.Log("SpawnBubble called");
         if (!choicesSpawned)
         {
+            Debug.Log("Choices not spawned");
             if (dialogue.sentences[currentBubble] == "END")
             {
-                if (dialogue.choices.Length == 0)
+                Debug.Log("END encountered");
+                if (dialogue.choices.Length == 0 && dialogue.abilityCheck == null)
                 {
                     choicesSpawned = false;
                     currentBubble = 0;
@@ -37,13 +44,19 @@ public class BubbleSpawner : MonoBehaviour
                     continueButton.onClick.AddListener(() => SpawnBubble(chosenDialogue));
                     SpawnBubble(chosenDialogue);
                 }
-                else
+                else if (dialogue.choices.Length > 0)
                 {
                     DisplayChoices(dialogue);
+                }
+                else
+                {
+                    AbilityCheck(dialogue);
                 }
             }
             else
             {
+                Debug.Log("END not encountered");
+                // check if we are allowed to see this bubble
                 if (dialogue.requirements[currentBubble] == "")
                 {
                     DrawBubble(dialogue);
@@ -295,73 +308,72 @@ public class BubbleSpawner : MonoBehaviour
 
         int changeAmountInt = int.Parse(changeAmount);
         int currentAmount;
-
         switch (statToChange)
         {
-            case "ST1":
-                currentAmount = player.ST1;
+            case "SMA":
+                currentAmount = player.Smarts;
                 if (plusOrMinus == "+")
                 {
-                    player.ST1 = currentAmount + changeAmountInt;
+                    player.Smarts = currentAmount + changeAmountInt;
                 }
                 else
                 {
-                    player.ST1 = currentAmount - changeAmountInt;
+                    player.Smarts = currentAmount - changeAmountInt;
                 }
                 break;
-            case "ST2":
-                currentAmount = player.ST2;
+            case "BRA":
+                currentAmount = player.Brawn;
                 if (plusOrMinus == "+")
                 {
-                    player.ST2 = currentAmount + changeAmountInt;
+                    player.Brawn = currentAmount + changeAmountInt;
                 }
                 else
                 {
-                    player.ST2 = currentAmount - changeAmountInt;
+                    player.Brawn = currentAmount - changeAmountInt;
                 }
                 break;
-            case "ST3":
-                currentAmount = player.ST3;
+            case "AGI":
+                currentAmount = player.Agility;
                 if (plusOrMinus == "+")
                 {
-                    player.ST3 = currentAmount + changeAmountInt;
+                    player.Agility = currentAmount + changeAmountInt;
                 }
                 else
                 {
-                    player.ST3 = currentAmount - changeAmountInt;
+                    player.Agility = currentAmount - changeAmountInt;
                 }
                 break;
-            case "ST4":
-                currentAmount = player.ST4;
+            case "CHA":
+                currentAmount = player.Charisma;
                 if (plusOrMinus == "+")
                 {
-                    player.ST4 = currentAmount + changeAmountInt;
+                    player.Charisma = currentAmount + changeAmountInt;
                 }
                 else
                 {
-                    player.ST4 = currentAmount - changeAmountInt;
+                    player.Charisma = currentAmount - changeAmountInt;
                 }
                 break;
-            case "ST5":
-                currentAmount = player.ST5;
+            case "POP":
+                currentAmount = player.Popularity;
                 if (plusOrMinus == "+")
                 {
-                    player.ST5 = currentAmount + changeAmountInt;
+                    player.Popularity = currentAmount + changeAmountInt;
                 }
                 else
                 {
-                    player.ST5 = currentAmount - changeAmountInt;
+                    player.Popularity = currentAmount - changeAmountInt;
                 }
                 break;
-            case "ST6":
-                currentAmount = player.ST6;
+            case "VIB":
+                currentAmount = player.Vibereading;
                 if (plusOrMinus == "+")
                 {
-                    player.ST6 = currentAmount + changeAmountInt;
+                    player.Vibereading = currentAmount + changeAmountInt;
                 }
                 else
                 {
-                    player.ST6 = currentAmount - changeAmountInt;
+                    player.Vibereading = currentAmount - changeAmountInt;
                 }
                 break;
             case "ST7":
@@ -387,6 +399,65 @@ public class BubbleSpawner : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void AbilityCheck(so_dialoguebubble dialogue)
+    {
+        // rolling
+        int roll = UnityEngine.Random.Range(1, 20);
+        string applicableStat = dialogue.abilityCheck.ability;
+        int playersModifier = 0;
+        switch (applicableStat)
+        {
+            case "Smarts":
+                playersModifier = player.Smarts;
+                break;
+            case "Brawn":
+                playersModifier = player.Brawn;
+                break;
+            case "Agility":
+                playersModifier = player.Agility;
+                break;
+            case "Charisma":
+                playersModifier = player.Charisma;
+                break;
+            case "Popularity":
+                playersModifier = player.Popularity;
+                break;
+            case "Vibereading":
+                playersModifier = player.Vibereading;
+                break;
+        }
+        int result = roll + playersModifier;
+        Debug.Log(result);
+        // showing the roll
+        AbilityCheckShower abilityCheckShowerScript =
+            abilityCheckShower.GetComponent<AbilityCheckShower>();
+        abilityCheckShowerScript.ShowAbilityCheckWindow(dialogue.abilityCheck, roll);
+        // checking result
+        if (result >= dialogue.abilityCheck.DC)
+        {
+            dialogue.abilityCheck.success = true;
+            choicesSpawned = false;
+            currentBubble = 0;
+            Button continueButtonButton = continueButton.GetComponent<Button>();
+            continueButtonButton.onClick.RemoveAllListeners();
+            so_dialoguebubble chosenDialogue = dialogue.abilityCheckSuccessPath;
+            continueButton.onClick.AddListener(() => SpawnBubble(chosenDialogue));
+            SpawnBubble(chosenDialogue);
+        }
+        else
+        {
+            dialogue.abilityCheck.success = false;
+            choicesSpawned = false;
+            currentBubble = 0;
+            Button continueButtonButton = continueButton.GetComponent<Button>();
+            continueButtonButton.onClick.RemoveAllListeners();
+            so_dialoguebubble chosenDialogue = dialogue.abilityCheckFailurePath;
+            continueButton.onClick.AddListener(() => SpawnBubble(chosenDialogue));
+            SpawnBubble(chosenDialogue);
+        }
+        choicesSpawned = true;
     }
 }
 

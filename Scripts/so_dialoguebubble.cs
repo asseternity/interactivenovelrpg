@@ -11,4 +11,7 @@ public class so_dialoguebubble : ScriptableObject
     public string[] labels;
     public string[] statChanges;
     public so_dialoguebubble noChoiceNextDialogue;
+    public so_abilitycheck abilityCheck;
+    public so_dialoguebubble abilityCheckSuccessPath;
+    public so_dialoguebubble abilityCheckFailurePath;
 }

@@ -17,6 +17,6 @@ public class StatsBoxUpdater : MonoBehaviour
         GameObject statsBoxText = statsBox.transform.Find("StatsText").gameObject;
         Text statsBoxTextComponent = statsBoxText.GetComponent<Text>();
         statsBoxTextComponent.text =
-            $"ST1: {player.ST1} \r\nST2: {player.ST2} \r\nST3: {player.ST3} \r\nST4: {player.ST4} \r\nST5: {player.ST5} \r\nST6: {player.ST6} \r\nST7: {player.ST7} \r\nST8: {player.ST8}";
+            $"Smarts: {player.Smarts} \r\nBrawn: {player.Brawn} \r\nAgility: {player.Agility} \r\nCharisma: {player.Charisma} \r\nPopularity: {player.Popularity} \r\nVibereading: {player.Vibereading}";
     }
 }

@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   requirements:
   - 
   - 
@@ -29,6 +30,7 @@ MonoBehaviour:
   - personality_tough
   - personality_humble
   - personality_socialbutterfly
+  - 
   - 
   sentences:
   - '"Following me, or are you just gonna stand there?" the leather-jacketed student
@@ -46,8 +48,14 @@ MonoBehaviour:
     you''re a hell of a shark already."'
   - '"Good, you''ll need that around here," they say as they enter the school yard,
     gesturing for you to follow them.'
+  - As they say that, and exit into the yard, you notice something peculiar about
+    the way they move.
+  - END
   choices: []
   consequences: []
   labels: []
   statChanges: []
   noChoiceNextDialogue: {fileID: 0}
+  abilityCheck: {fileID: 11400000, guid: 03c238f6cbab35840a2201746501f3d4, type: 2}
+  abilityCheckSuccessPath: {fileID: 11400000, guid: fb5519f291237664e912f3c1bf7f8738, type: 2}
+  abilityCheckFailurePath: {fileID: 11400000, guid: 22d94529bf4ce534091c2e2e4ae7f876, type: 2}
