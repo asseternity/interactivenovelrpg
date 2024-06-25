@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adac54ace5aa71b459c08140e6075b93, type: 3}
+  m_Name: SO_DialogueBubble - 2.1 - combinedRoutes
+  m_EditorClassIdentifier: 
+  bubbles:
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  requirements:
+  - 
+  - 
+  - 
+  - 
+  - personality_tough
+  - personality_humble
+  - personality_socialbutterfly
+  - 
+  sentences:
+  - '"Following me, or are you just gonna stand there?" the leather-jacketed student
+    smirks.'
+  - You hesitate for a moment, but then walk after them through the school hallways.
+    They could know important info about this school.
+  - The person walks quickly but relaxedly, hands in the pockets of their jeans.
+  - '"Name''s Scout, by the way," they say. Their frazzled black curly hair gives
+    the skinny student an androgynous look.'
+  - '"So you think you''re tough, huh?" Scout smiles, glancing back at you as you
+    follow them.'
+  - '"Good at taking advice, gathering information, I take it?" Scout smiles, glancing
+    back at you.'
+  - '"''Making connections'', huh?" Scout smirks as they glance back at you. "I see
+    you''re a hell of a shark already."'
+  - '"Good, you''ll need that around here," they say as they enter the school yard,
+    gesturing for you to follow them.'
+  choices: []
+  consequences: []
+  labels: []
+  statChanges: []
+  noChoiceNextDialogue: {fileID: 0}

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adac54ace5aa71b459c08140e6075b93, type: 3}
+  m_Name: SO_DialogueBubble - routeA
+  m_EditorClassIdentifier: 
+  bubbles:
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  requirements:
+  - 
+  - 
+  - 
+  sentences:
+  - '"Bold move. Watch your step, rookie." They smirk, sizing you up.'
+  - '"Got guts, I''ll give you that." Their eyes gleam with respect.'
+  - '"Stick with me, I''ll show you the ropes." They extend a hand.'
+  - END
+  choices: []
+  consequences: []
+  labels: []
+  statChanges: []
+  noChoiceNextDialogue: {fileID: 11400000, guid: 34939b029f12f0e409bc4e6c5f053fe6, type: 2}
