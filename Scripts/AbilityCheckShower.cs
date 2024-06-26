@@ -27,9 +27,11 @@ public class AbilityCheckShower : MonoBehaviour
     public Sprite result20;
     public so_playerstats player;
     public GameObject canvas;
+    public bool windowOpen = false;
 
     public void ShowAbilityCheckWindow(so_abilitycheck abilitycheck, int diceRoll)
     {
+        windowOpen = true;
         GameObject rollDivInstance = Instantiate(
             rollDivExample,
             new Vector2(
@@ -44,5 +46,10 @@ public class AbilityCheckShower : MonoBehaviour
         Image rollImage = frame.GetComponentInChildren<Image>();
         rollText.text =
             $"You rolled a {diceRoll}\r\nYour {abilitycheck.ability} is +{player.Vibereading}\r\n\r\nTotal result: {diceRoll + player.Vibereading}.";
+
+        GameObject closeButtonImage = rollDivInstance.transform.Find("CloseButtonImage").gameObject;
+        DestroySelf closeButtonScript = closeButtonImage.GetComponent<DestroySelf>();
+        closeButtonScript.abilityCheckDiv = rollDivInstance;
+        Debug.Log("Clicking X should trigger deletion of:" + closeButtonScript.abilityCheckDiv);
     }
 }

@@ -21,19 +21,15 @@ public class BubbleSpawner : MonoBehaviour
     {
         Button continueButtonButton = continueButton.GetComponent<Button>();
         continueButtonButton.onClick.AddListener(() => SpawnBubble(startingDialogue));
-        Debug.Log("Start() called with" + startingDialogue);
         player.ResetStats();
     }
 
     public void SpawnBubble(so_dialoguebubble dialogue)
     {
-        Debug.Log("SpawnBubble called");
         if (!choicesSpawned)
         {
-            Debug.Log("Choices not spawned");
             if (dialogue.sentences[currentBubble] == "END")
             {
-                Debug.Log("END encountered");
                 if (dialogue.choices.Length == 0 && dialogue.abilityCheck == null)
                 {
                     choicesSpawned = false;
@@ -55,7 +51,6 @@ public class BubbleSpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("END not encountered");
                 // check if we are allowed to see this bubble
                 if (dialogue.requirements[currentBubble] == "")
                 {
@@ -403,6 +398,7 @@ public class BubbleSpawner : MonoBehaviour
 
     public void AbilityCheck(so_dialoguebubble dialogue)
     {
+        Debug.Log("bubble.AbilityCheck called");
         // rolling
         int roll = UnityEngine.Random.Range(1, 20);
         string applicableStat = dialogue.abilityCheck.ability;
@@ -429,7 +425,6 @@ public class BubbleSpawner : MonoBehaviour
                 break;
         }
         int result = roll + playersModifier;
-        Debug.Log(result);
         // showing the roll
         AbilityCheckShower abilityCheckShowerScript =
             abilityCheckShower.GetComponent<AbilityCheckShower>();
@@ -470,6 +465,7 @@ public class BubbleSpawner : MonoBehaviour
 // the stat [NEW CANVAS FOR THIS]
 // - skill checks
 // roll a 1d20 + skill modifier for a skill check [NEW CANVAS FOR THIS]
+// - button to press for a roll, BG3 style
 // - relationship mechanics that are not "approval meter". something about reading / knowing people better? like, you have no idea how
 // much they like you - you can only gauge by what they tell you - but you will be given extra clues if you know them better
 // *GOOD FOR BETRAYALS AND SUCH!*
