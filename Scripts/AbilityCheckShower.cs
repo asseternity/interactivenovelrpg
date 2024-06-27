@@ -1,3 +1,4 @@
+using System.Reflection;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 public class AbilityCheckShower : MonoBehaviour
 {
     public GameObject rollDivExample;
+    public GameObject clickDivExample;
     public Sprite result1;
     public Sprite result2;
     public Sprite result3;
@@ -29,6 +31,41 @@ public class AbilityCheckShower : MonoBehaviour
     public GameObject canvas;
     public bool windowOpen = false;
 
+    public void ShowRollWindow(so_abilitycheck abilitycheck, int diceRoll)
+    {
+        Debug.Log("ShowRollWindow called");
+        windowOpen = true;
+        GameObject clickDivInstance = Instantiate(
+            clickDivExample,
+            new Vector2(
+                clickDivExample.transform.position.x,
+                clickDivExample.transform.position.y - 800
+            ),
+            quaternion.identity
+        );
+        clickDivInstance.transform.SetParent(canvas.transform);
+        Debug.Log("clickDivInstance = " + clickDivInstance);
+        GameObject clickButtonObject = clickDivInstance.transform.Find("RollButton").gameObject;
+        Debug.Log("clickButtonObject = " + clickButtonObject);
+        ClickToRollButton clickButtonScript = clickButtonObject.GetComponent<ClickToRollButton>();
+        Debug.Log("clickButtonScript = " + clickButtonScript);
+        clickButtonScript.currentAbilityCheck = abilitycheck;
+        clickButtonScript.diceRoll = diceRoll;
+
+        // set description text
+        string abilityName = abilitycheck.ability;
+        GameObject rollDescription = clickDivInstance.transform.Find("RollResult").gameObject;
+        Text rollDescriptionText = rollDescription.GetComponent<Text>();
+        rollDescriptionText.text =
+            $"You triggered a {abilityName} ability check.\r\nClick below to roll.";
+
+        // set button text
+        FieldInfo fieldInfo = typeof(so_playerstats).GetField(abilityName);
+        int correctAbilityScore = (int)fieldInfo.GetValue(player);
+        Text clickButtonText = clickButtonObject.GetComponentInChildren<Text>();
+        clickButtonText.text = $"\r\nRoll 1d20 + {correctAbilityScore}\r\n(your {abilityName})";
+    }
+
     public void ShowAbilityCheckWindow(so_abilitycheck abilitycheck, int diceRoll)
     {
         windowOpen = true;
@@ -42,14 +79,86 @@ public class AbilityCheckShower : MonoBehaviour
         );
         rollDivInstance.transform.SetParent(canvas.transform);
         GameObject frame = rollDivInstance.transform.Find("Frame").gameObject;
-        Text rollText = frame.GetComponentInChildren<Text>();
-        Image rollImage = frame.GetComponentInChildren<Image>();
-        rollText.text =
-            $"You rolled a {diceRoll}\r\nYour {abilitycheck.ability} is +{player.Vibereading}\r\n\r\nTotal result: {diceRoll + player.Vibereading}.";
 
+        // change the text
+        string abilityName = abilitycheck.ability;
+        FieldInfo fieldInfo = typeof(so_playerstats).GetField(abilityName);
+
+        int correctAbilityScore = (int)fieldInfo.GetValue(player);
+        Text rollText = frame.GetComponentInChildren<Text>();
+        rollText.text =
+            $"You rolled a {diceRoll}\r\nYour {abilitycheck.ability} is +{correctAbilityScore}\r\n\r\nTotal result: {diceRoll + correctAbilityScore}.";
+
+        // change the image
+        GameObject rollImageObject = frame.transform.Find("DiceSprite").gameObject;
+        Image rollImage = rollImageObject.GetComponent<Image>();
+        switch (diceRoll)
+        {
+            case 1:
+                rollImage.sprite = result1;
+                break;
+            case 2:
+                rollImage.sprite = result2;
+                break;
+            case 3:
+                rollImage.sprite = result3;
+                break;
+            case 4:
+                rollImage.sprite = result4;
+                break;
+            case 5:
+                rollImage.sprite = result5;
+                break;
+            case 6:
+                rollImage.sprite = result6;
+                break;
+            case 7:
+                rollImage.sprite = result7;
+                break;
+            case 8:
+                rollImage.sprite = result8;
+                break;
+            case 9:
+                rollImage.sprite = result9;
+                break;
+            case 10:
+                rollImage.sprite = result10;
+                break;
+            case 11:
+                rollImage.sprite = result11;
+                break;
+            case 12:
+                rollImage.sprite = result12;
+                break;
+            case 13:
+                rollImage.sprite = result13;
+                break;
+            case 14:
+                rollImage.sprite = result14;
+                break;
+            case 15:
+                rollImage.sprite = result15;
+                break;
+            case 16:
+                rollImage.sprite = result16;
+                break;
+            case 17:
+                rollImage.sprite = result17;
+                break;
+            case 18:
+                rollImage.sprite = result18;
+                break;
+            case 19:
+                rollImage.sprite = result19;
+                break;
+            case 20:
+                rollImage.sprite = result20;
+                break;
+        }
+
+        // close button
         GameObject closeButtonImage = rollDivInstance.transform.Find("CloseButtonImage").gameObject;
         DestroySelf closeButtonScript = closeButtonImage.GetComponent<DestroySelf>();
         closeButtonScript.abilityCheckDiv = rollDivInstance;
-        Debug.Log("Clicking X should trigger deletion of:" + closeButtonScript.abilityCheckDiv);
     }
 }

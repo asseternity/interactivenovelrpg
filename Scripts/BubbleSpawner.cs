@@ -428,7 +428,7 @@ public class BubbleSpawner : MonoBehaviour
         // showing the roll
         AbilityCheckShower abilityCheckShowerScript =
             abilityCheckShower.GetComponent<AbilityCheckShower>();
-        abilityCheckShowerScript.ShowAbilityCheckWindow(dialogue.abilityCheck, roll);
+        abilityCheckShowerScript.ShowRollWindow(dialogue.abilityCheck, roll);
         // checking result
         if (result >= dialogue.abilityCheck.DC)
         {

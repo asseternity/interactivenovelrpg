@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adac54ace5aa71b459c08140e6075b93, type: 3}
+  m_Name: AbilityCheckTest - 1
+  m_EditorClassIdentifier: 
+  bubbles:
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  requirements:
+  - 
+  sentences:
+  - Testing Ability check
+  - END
+  choices: []
+  consequences: []
+  labels: []
+  statChanges: []
+  noChoiceNextDialogue: {fileID: 0}
+  abilityCheck: {fileID: 11400000, guid: 03c238f6cbab35840a2201746501f3d4, type: 2}
+  abilityCheckSuccessPath: {fileID: 11400000, guid: 11ca26707126ce1408e824a46ae3252a, type: 2}
+  abilityCheckFailurePath: {fileID: 11400000, guid: 11ca26707126ce1408e824a46ae3252a, type: 2}
