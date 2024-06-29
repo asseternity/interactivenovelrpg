@@ -371,26 +371,26 @@ public class BubbleSpawner : MonoBehaviour
                     player.Vibereading = currentAmount - changeAmountInt;
                 }
                 break;
-            case "ST7":
-                currentAmount = player.ST7;
+            case "STR":
+                currentAmount = player.Stress;
                 if (plusOrMinus == "+")
                 {
-                    player.ST7 = currentAmount + changeAmountInt;
+                    player.Stress = currentAmount + changeAmountInt;
                 }
                 else
                 {
-                    player.ST7 = currentAmount - changeAmountInt;
+                    player.Stress = currentAmount - changeAmountInt;
                 }
                 break;
-            case "ST8":
-                currentAmount = player.ST8;
+            case "EXH":
+                currentAmount = player.Exhaustion;
                 if (plusOrMinus == "+")
                 {
-                    player.ST8 = currentAmount + changeAmountInt;
+                    player.Exhaustion = currentAmount + changeAmountInt;
                 }
                 else
                 {
-                    player.ST8 = currentAmount - changeAmountInt;
+                    player.Exhaustion = currentAmount - changeAmountInt;
                 }
                 break;
         }
@@ -463,9 +463,6 @@ public class BubbleSpawner : MonoBehaviour
 // - at the beginning of every week - create your schedule by clicking and dragging classes [MAKE NEW CANVAS FOR THIS]
 // - whichever classes you pick for whichever day - you get asked logic questions and depending on your answer you get more or less of
 // the stat [NEW CANVAS FOR THIS]
-// - skill checks
-// roll a 1d20 + skill modifier for a skill check [NEW CANVAS FOR THIS]
-// - button to press for a roll, BG3 style
 // - relationship mechanics that are not "approval meter". something about reading / knowing people better? like, you have no idea how
 // much they like you - you can only gauge by what they tell you - but you will be given extra clues if you know them better
 // *GOOD FOR BETRAYALS AND SUCH!*

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adac54ace5aa71b459c08140e6075b93, type: 3}
-  m_Name: AbilityCheckTest - 3
+  m_Name: StatCheck - 5
   m_EditorClassIdentifier: 
   bubbles:
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   requirements:
   - 
   sentences:
-  - Testing Ability check
+  - Next Tester
   - END
   choices: []
   consequences: []
   labels: []
   statChanges: []
   noChoiceNextDialogue: {fileID: 0}
-  abilityCheck: {fileID: 11400000, guid: d5e9de807cdf81d4f9fe4ef2099cdaed, type: 2}
-  abilityCheckSuccessPath: {fileID: 11400000, guid: 7b3e10e00f73810408b2d4545165e4d9, type: 2}
-  abilityCheckFailurePath: {fileID: 11400000, guid: 7b3e10e00f73810408b2d4545165e4d9, type: 2}
+  abilityCheck: {fileID: 0}
+  abilityCheckSuccessPath: {fileID: 0}
+  abilityCheckFailurePath: {fileID: 0}

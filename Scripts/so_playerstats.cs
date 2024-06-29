@@ -10,8 +10,8 @@ public class so_playerstats : ScriptableObject
     public int Charisma;
     public int Popularity;
     public int Vibereading;
-    public int ST7;
-    public int ST8;
+    public int Stress;
+    public int Exhaustion;
 
     public void ResetStats()
     {
@@ -23,7 +23,7 @@ public class so_playerstats : ScriptableObject
         Charisma = 0;
         Popularity = 0;
         Vibereading = 0;
-        ST7 = 0;
-        ST8 = 0;
+        Stress = 0;
+        Exhaustion = 0;
     }
 }
