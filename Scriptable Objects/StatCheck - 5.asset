@@ -14,16 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbles:
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   requirements:
   - 
+  - 
+  - 
+  - 
+  - 
+  - 
   sentences:
-  - Next Tester
+  - No image
+  - IMAGE
+  - No image
+  - No image
+  - No image
+  - No image
   - END
+  images:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: b9be93128b68b834d93f89c27713e512, type: 3}
   choices: []
   consequences: []
   labels: []
   statChanges: []
-  noChoiceNextDialogue: {fileID: 0}
+  noChoiceNextDialogue: {fileID: 11400000, guid: 9d117c40da9f7ee4fb3bec082bc048d9, type: 2}
   abilityCheck: {fileID: 0}
   abilityCheckSuccessPath: {fileID: 0}
   abilityCheckFailurePath: {fileID: 0}

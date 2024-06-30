@@ -6,6 +6,7 @@ public class so_dialoguebubble : ScriptableObject
     public Sprite[] bubbles;
     public string[] requirements;
     public string[] sentences;
+    public Sprite[] images;
     public string[] choices;
     public so_dialoguebubble[] consequences;
     public string[] labels;

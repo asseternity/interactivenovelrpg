@@ -9,6 +9,7 @@ public class BubbleSpawner : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject bubbleExample;
+    public GameObject bubbleExampleImage;
     public List<GameObject> bubbles = new List<GameObject>();
     int currentBubble = 0;
     GameObject bubbleToDelete;
@@ -54,7 +55,14 @@ public class BubbleSpawner : MonoBehaviour
                 // check if we are allowed to see this bubble
                 if (dialogue.requirements[currentBubble] == "")
                 {
-                    DrawBubble(dialogue);
+                    if (dialogue.sentences[currentBubble] == "IMAGE")
+                    {
+                        DrawImage(dialogue);
+                    }
+                    else
+                    {
+                        DrawBubble(dialogue);
+                    }
                 }
                 else
                 {
@@ -125,7 +133,7 @@ public class BubbleSpawner : MonoBehaviour
 
     public void DrawBubble(so_dialoguebubble dialogue)
     {
-        MoveBubbles();
+        MoveBubbles("text");
         // store position of spawner empty gameObect
         Vector2 spawnerPosition = gameObject.transform.position;
         spawnerPosition.x -= 400;
@@ -149,7 +157,32 @@ public class BubbleSpawner : MonoBehaviour
         currentBubble++;
     }
 
-    public void MoveBubbles()
+    public void DrawImage(so_dialoguebubble dialogue)
+    {
+        MoveBubbles("image");
+        // store position of spawner empty gameObect
+        Vector2 spawnerPosition = gameObject.transform.position;
+        spawnerPosition.x -= 400;
+        spawnerPosition.y += 130;
+        // create an instance of exampleBubble
+        GameObject newBubble = Instantiate(
+            bubbleExampleImage,
+            spawnerPosition,
+            Quaternion.identity
+        );
+        // set newBubble to be canvas' child
+        newBubble.transform.SetParent(canvas.transform);
+        GameObject newBubbleImageObject = newBubble
+            .transform.Find("ImageBubbleSubjectMatter")
+            .gameObject;
+        Image newBubbleImage = newBubbleImageObject.GetComponent<Image>();
+        newBubbleImage.sprite = dialogue.images[currentBubble];
+        // add newBubble to a list
+        bubbles.Add(newBubble);
+        currentBubble++;
+    }
+
+    public void MoveBubbles(string type)
     {
         // this will be called when a new bubble is created
         // it will iterate through all bubbles
@@ -157,8 +190,15 @@ public class BubbleSpawner : MonoBehaviour
         {
             // and move them down a little
             Vector2 positionOfCurrentBubble = bubbles[j].transform.position;
-            positionOfCurrentBubble.y -= 230;
-            // assigned vector back to transform
+            if (type == "image")
+            {
+                positionOfCurrentBubble.y -= 500;
+            }
+            else
+            {
+                positionOfCurrentBubble.y -= 230;
+            }
+            // assign vector back to transform
             bubbles[j].transform.position = new Vector2(
                 bubbles[j].transform.position.x,
                 positionOfCurrentBubble.y

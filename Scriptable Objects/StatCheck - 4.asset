@@ -19,18 +19,23 @@ MonoBehaviour:
   sentences:
   - Testing STR Change
   - END
+  images: []
   choices:
   - Gain Exhaustion
   - Gain Stress
+  - Lose Stress
   consequences:
+  - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
   - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
   - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
   labels:
   - 
   - 
+  - 
   statChanges:
   - EXH+20
   - STR+50
+  - STR-50
   noChoiceNextDialogue: {fileID: 0}
   abilityCheck: {fileID: 0}
   abilityCheckSuccessPath: {fileID: 0}
