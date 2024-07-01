@@ -19,7 +19,15 @@ MonoBehaviour:
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   requirements:
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -33,6 +41,10 @@ MonoBehaviour:
   - No image
   - No image
   - No image
+  - Text example 1
+  - Text example 2
+  - Text example 3
+  - Text example 4
   - END
   images:
   - {fileID: 0}

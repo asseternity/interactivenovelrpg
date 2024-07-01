@@ -12,7 +12,7 @@ public class CanvasSwitcher : MonoBehaviour
     {
         canvas1.gameObject.SetActive(true);
         canvas2.gameObject.SetActive(false);
-        canvas4.gameObject.SetActive(false);
+        canvas3.gameObject.SetActive(false);
         canvas4.gameObject.SetActive(false);
     }
 
@@ -24,7 +24,7 @@ public class CanvasSwitcher : MonoBehaviour
         {
             canvas1.gameObject.SetActive(true);
             canvas2.gameObject.SetActive(false);
-            canvas4.gameObject.SetActive(false);
+            canvas3.gameObject.SetActive(false);
             canvas4.gameObject.SetActive(false);
         }
     }
@@ -37,7 +37,7 @@ public class CanvasSwitcher : MonoBehaviour
         {
             canvas1.gameObject.SetActive(false);
             canvas2.gameObject.SetActive(true);
-            canvas4.gameObject.SetActive(false);
+            canvas3.gameObject.SetActive(false);
             canvas4.gameObject.SetActive(false);
         }
     }
@@ -50,7 +50,7 @@ public class CanvasSwitcher : MonoBehaviour
         {
             canvas1.gameObject.SetActive(false);
             canvas2.gameObject.SetActive(false);
-            canvas4.gameObject.SetActive(true);
+            canvas3.gameObject.SetActive(true);
             canvas4.gameObject.SetActive(false);
         }
     }
@@ -63,7 +63,7 @@ public class CanvasSwitcher : MonoBehaviour
         {
             canvas1.gameObject.SetActive(false);
             canvas2.gameObject.SetActive(false);
-            canvas4.gameObject.SetActive(false);
+            canvas3.gameObject.SetActive(false);
             canvas4.gameObject.SetActive(true);
         }
     }

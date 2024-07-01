@@ -17,6 +17,7 @@ public class BubbleSpawner : MonoBehaviour
     public so_dialoguebubble startingDialogue;
     public so_playerstats player;
     public GameObject abilityCheckShower;
+    public GameObject logText;
 
     public void Start()
     {
@@ -154,6 +155,8 @@ public class BubbleSpawner : MonoBehaviour
         newBubbleText.text = dialogue.sentences[currentBubble];
         // add newBubble to a list
         bubbles.Add(newBubble);
+        Logger logTextScript = logText.GetComponent<Logger>();
+        logTextScript.AddLog(dialogue.sentences[currentBubble]);
         currentBubble++;
     }
 
@@ -189,22 +192,18 @@ public class BubbleSpawner : MonoBehaviour
         for (int j = 0; j < bubbles.Count; j++)
         {
             // and move them down a little
-            Vector2 positionOfCurrentBubble = bubbles[j].transform.position;
+            RectTransform rectTransform = bubbles[j].GetComponent<RectTransform>();
+            Vector2 anchoredPosition = rectTransform.anchoredPosition;
             if (type == "image")
             {
-                positionOfCurrentBubble.y -= 500;
+                anchoredPosition.y -= 450;
             }
             else
             {
-                positionOfCurrentBubble.y -= 230;
+                anchoredPosition.y -= 230;
             }
-            // assign vector back to transform
-            bubbles[j].transform.position = new Vector2(
-                bubbles[j].transform.position.x,
-                positionOfCurrentBubble.y
-            );
-            // and because we call it after creation of every single one
-            // they will be moved down one by one
+            // assign vector back to RectTransform
+            rectTransform.anchoredPosition = anchoredPosition;
             // after they are moved, call DestroyBubbles(current bubble)
         }
         DestroyBubbles();
@@ -212,17 +211,26 @@ public class BubbleSpawner : MonoBehaviour
 
     public void DestroyBubbles()
     {
+        List<GameObject> bubblesToDelete = new List<GameObject>();
+
         for (int h = 0; h < bubbles.Count; h++)
-        { // test if bubble's position is too low
-            Vector2 bubblePosition = bubbles[h].transform.position;
-            if (bubblePosition.y < 250)
-            // if it is, Destroy()
+        {
+            // test if bubble's anchored position is too low
+            RectTransform rectTransform = bubbles[h].GetComponent<RectTransform>();
+            Vector2 anchoredPosition = rectTransform.anchoredPosition;
+            if (anchoredPosition.y < 250)
             {
-                bubbleToDelete = bubbles[h];
+                // if it is, add it to the list of bubbles to delete
+                bubblesToDelete.Add(bubbles[h]);
             }
         }
-        bubbles.Remove(bubbleToDelete);
-        Destroy(bubbleToDelete, 0f);
+
+        // Destroy all bubbles that need to be deleted
+        foreach (GameObject bubble in bubblesToDelete)
+        {
+            bubbles.Remove(bubble);
+            Destroy(bubble, 0f);
+        }
     }
 
     public GameObject choiceboxA;
