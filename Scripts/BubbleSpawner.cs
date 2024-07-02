@@ -18,6 +18,7 @@ public class BubbleSpawner : MonoBehaviour
     public so_playerstats player;
     public GameObject abilityCheckShower;
     public GameObject logText;
+    public GameObject dateKeeper;
 
     public void Start()
     {
@@ -441,6 +442,10 @@ public class BubbleSpawner : MonoBehaviour
                     player.Exhaustion = currentAmount - changeAmountInt;
                 }
                 break;
+            case "DAT":
+                DateKeeper dateKeeperScript = dateKeeper.GetComponent<DateKeeper>();
+                dateKeeperScript.NextDay();
+                break;
         }
     }
 
@@ -505,7 +510,6 @@ public class BubbleSpawner : MonoBehaviour
 }
 
 // to do:
-// - stress (mental energy) and exhaustion (physical energy) meters in upper right corner - with lines that go up and down
 // - reduce or gain stress and exhaustion throughout
 // - date and weekday in bottom right
 // - at the beginning of every week - create your schedule by clicking and dragging classes [MAKE NEW CANVAS FOR THIS]
