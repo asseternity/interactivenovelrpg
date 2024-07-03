@@ -11,7 +11,8 @@ public class BubbleSpawner : MonoBehaviour
     public GameObject bubbleExample;
     public GameObject bubbleExampleImage;
     public List<GameObject> bubbles = new List<GameObject>();
-    int currentBubble = 0;
+    public int currentBubble = 0;
+    public so_dialoguebubble currentDialogue;
     GameObject bubbleToDelete;
     public bool choicesSpawned = false;
     public so_dialoguebubble startingDialogue;
@@ -29,6 +30,7 @@ public class BubbleSpawner : MonoBehaviour
 
     public void SpawnBubble(so_dialoguebubble dialogue)
     {
+        currentDialogue = dialogue;
         if (!choicesSpawned)
         {
             if (dialogue.sentences[currentBubble] == "END")

@@ -31,7 +31,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
   - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
   - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
-  labels: []
+  labels:
+  - 
+  - 
+  - 
   statChanges:
   - DAT+1
   - DAT+1
