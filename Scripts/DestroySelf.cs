@@ -5,6 +5,8 @@ public class DestroySelf : MonoBehaviour
     public GameObject bubbleMainObject;
     public GameObject abilityCheckShower;
     public GameObject abilityCheckDiv;
+    public bool insightCheck = false;
+    public GameObject insightChecker;
 
     public void Delete()
     {
@@ -17,5 +19,11 @@ public class DestroySelf : MonoBehaviour
         AbilityCheckShower abilityCheckShowerScript =
             abilityCheckShower.GetComponent<AbilityCheckShower>();
         abilityCheckShowerScript.windowOpen = false;
+        if (insightCheck)
+        {
+            InsightChecker insightCheckerScript = insightChecker.GetComponent<InsightChecker>();
+            insightCheckerScript.ShowResult();
+            insightCheck = false;
+        }
     }
 }

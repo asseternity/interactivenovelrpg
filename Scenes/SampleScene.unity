@@ -7281,6 +7281,8 @@ MonoBehaviour:
   bubbleMainObject: {fileID: 1075168846}
   abilityCheckShower: {fileID: 1104131660}
   abilityCheckDiv: {fileID: 332560934}
+  insightCheck: 0
+  insightChecker: {fileID: 1786918131}
 --- !u!114 &1339416238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8399,6 +8401,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1786918138}
+          m_TargetAssemblyTypeName: InsightChecker, Assembly-CSharp
+          m_MethodName: HoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -8406,6 +8420,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1786918134}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1786918138}
+          m_TargetAssemblyTypeName: InsightChecker, Assembly-CSharp
+          m_MethodName: HoverExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8489,7 +8515,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1786918136}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786918138}
+        m_TargetAssemblyTypeName: InsightChecker, Assembly-CSharp
+        m_MethodName: TriggerInsightCheck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1786918136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8541,6 +8579,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleMainObject: {fileID: 1075168846}
+  abilityCheckShower: {fileID: 1104131660}
+  IsItTrue: 0
+  player: {fileID: 11400000, guid: 8e94ab1158bb55445b57fa79e473dac8, type: 2}
+  defaultVibereading: {fileID: 11400000, guid: 73af86ec4b3efa241b6fa9d8e2e6659c, type: 2}
+  bubbleOnLastInsight: 0
 --- !u!1 &1788160645
 GameObject:
   m_ObjectHideFlags: 0

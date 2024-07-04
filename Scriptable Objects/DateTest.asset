@@ -15,12 +15,21 @@ MonoBehaviour:
   bubbles:
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
+  - {fileID: -884395137, guid: f908e18d045ab354fb08c210384249f7, type: 3}
   requirements:
+  - 
+  - 
+  - 
   - 
   - 
   sentences:
   - Testing starts
   - It's the next day.
+  - Truth
+  - Lie[F]
+  - Padding
   - END
   images: []
   choices:
@@ -28,9 +37,9 @@ MonoBehaviour:
   - Next day
   - Next day
   consequences:
-  - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
-  - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
-  - {fileID: 11400000, guid: 6873aa21822f60744a7248540cbb5d7d, type: 2}
+  - {fileID: 11400000, guid: 11ca26707126ce1408e824a46ae3252a, type: 2}
+  - {fileID: 11400000, guid: 11ca26707126ce1408e824a46ae3252a, type: 2}
+  - {fileID: 11400000, guid: 11ca26707126ce1408e824a46ae3252a, type: 2}
   labels:
   - 
   - 

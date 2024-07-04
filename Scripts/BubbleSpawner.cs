@@ -76,6 +76,7 @@ public class BubbleSpawner : MonoBehaviour
                 }
             }
         }
+        Debug.Log("currentBubble = " + currentBubble);
     }
 
     public int FindNextViewableIndex(so_dialoguebubble dialogue)
@@ -155,7 +156,7 @@ public class BubbleSpawner : MonoBehaviour
         // find ref to text component of Text, the child of newBubble
         Text newBubbleText = newBubbleTextObject.GetComponent<Text>();
         // set dialogue text to the assigned string
-        newBubbleText.text = dialogue.sentences[currentBubble];
+        newBubbleText.text = SliceOutFalseMark(dialogue);
         // add newBubble to a list
         bubbles.Add(newBubble);
         Logger logTextScript = logText.GetComponent<Logger>();
@@ -508,6 +509,17 @@ public class BubbleSpawner : MonoBehaviour
             SpawnBubble(chosenDialogue);
         }
         choicesSpawned = true;
+    }
+
+    public string SliceOutFalseMark(so_dialoguebubble dialogue)
+    {
+        string resultingString = dialogue.sentences[currentBubble];
+        int markIndex = dialogue.sentences[currentBubble].IndexOf("[");
+        if (markIndex >= 0)
+        {
+            resultingString = resultingString.Substring(0, markIndex);
+        }
+        return resultingString;
     }
 }
 

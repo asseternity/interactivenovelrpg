@@ -33,7 +33,6 @@ public class AbilityCheckShower : MonoBehaviour
 
     public void ShowRollWindow(so_abilitycheck abilitycheck, int diceRoll)
     {
-        Debug.Log("ShowRollWindow called");
         windowOpen = true;
         GameObject clickDivInstance = Instantiate(
             clickDivExample,
@@ -44,11 +43,8 @@ public class AbilityCheckShower : MonoBehaviour
             quaternion.identity
         );
         clickDivInstance.transform.SetParent(canvas.transform);
-        Debug.Log("clickDivInstance = " + clickDivInstance);
         GameObject clickButtonObject = clickDivInstance.transform.Find("RollButton").gameObject;
-        Debug.Log("clickButtonObject = " + clickButtonObject);
         ClickToRollButton clickButtonScript = clickButtonObject.GetComponent<ClickToRollButton>();
-        Debug.Log("clickButtonScript = " + clickButtonScript);
         clickButtonScript.currentAbilityCheck = abilitycheck;
         clickButtonScript.diceRoll = diceRoll;
 
@@ -160,5 +156,8 @@ public class AbilityCheckShower : MonoBehaviour
         GameObject closeButtonImage = rollDivInstance.transform.Find("CloseButtonImage").gameObject;
         DestroySelf closeButtonScript = closeButtonImage.GetComponent<DestroySelf>();
         closeButtonScript.abilityCheckDiv = rollDivInstance;
+
+        // vibereading mechanic - to show results not immediately
+        closeButtonScript.insightCheck = true;
     }
 }
