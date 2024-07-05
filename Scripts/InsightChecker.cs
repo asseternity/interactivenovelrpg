@@ -13,29 +13,24 @@ public class InsightChecker : MonoBehaviour
 
     public void TriggerInsightCheck()
     {
-        // BUGS TO FIX:
-        // 1) re-checking lines
-        // 2) "truth" is marked as a lie
         BubbleSpawner bubbleScript = bubbleMainObject.GetComponent<BubbleSpawner>();
+        // checking if this bubble was already insight checked
         InsightCheckedYet insightCheckedYet = bubbleScript
-            .bubbles[bubbleScript.currentBubble]
+            .bubbles[bubbleScript.bubbles.Count - 1]
             .GetComponent<InsightCheckedYet>();
         if (!insightCheckedYet.wasChecked)
         {
             insightCheckedYet.wasChecked = true;
             int markIndex;
             markIndex = bubbleScript
-                .currentDialogue.sentences[bubbleScript.currentBubble]
+                .currentDialogue.sentences[bubbleScript.currentBubble - 1]
                 .IndexOf("[");
-            Debug.Log("Insight Checking for currentBubble = " + bubbleScript.currentBubble);
             if (markIndex >= 0)
             {
-                Debug.Log("Checked line is a lie");
                 IsItTrue = false;
             }
             else
             {
-                Debug.Log("Checked line is true");
                 IsItTrue = true;
             }
             // rolling
@@ -88,12 +83,13 @@ public class InsightChecker : MonoBehaviour
         {
             Text buttonText = gameObject.GetComponentInChildren<Text>();
             buttonText.text = $"Insight check\r\nlast message";
-            buttonText.color = new Color(20f / 255f, 36f / 255f, 72f / 255f, 1f);
         }
     }
 
     public void HoverEnter()
     {
+        ButtonColor buttonColor = gameObject.GetComponent<ButtonColor>();
+        buttonColor.OnHoverEnter();
         BubbleSpawner bubbleScript = bubbleMainObject.GetComponent<BubbleSpawner>();
         GameObject lastBubble = bubbleScript.bubbles[bubbleScript.bubbles.Count - 1];
         Vector3 scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
@@ -102,6 +98,8 @@ public class InsightChecker : MonoBehaviour
 
     public void HoverExit()
     {
+        ButtonColor buttonColor = gameObject.GetComponent<ButtonColor>();
+        buttonColor.OnHoverExit();
         BubbleSpawner bubbleScript = bubbleMainObject.GetComponent<BubbleSpawner>();
         GameObject lastBubble = bubbleScript.bubbles[bubbleScript.bubbles.Count - 1];
         Vector3 scaleChange = new Vector3(0.1f, 0.1f, 0.1f);

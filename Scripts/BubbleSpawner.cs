@@ -523,12 +523,15 @@ public class BubbleSpawner : MonoBehaviour
     }
 }
 
-// to do:
-// - reduce or gain stress and exhaustion throughout
-// - date and weekday in bottom right
+// major:
 // - at the beginning of every week - create your schedule by clicking and dragging classes [MAKE NEW CANVAS FOR THIS]
 // - whichever classes you pick for whichever day - you get asked logic questions and depending on your answer you get more or less of
 // the stat [NEW CANVAS FOR THIS]
+
+// minor:
+// - reduce or gain stress and exhaustion throughout
 // - relationship mechanics that are not "approval meter". something about reading / knowing people better? like, you have no idea how
 // much they like you - you can only gauge by what they tell you - but you will be given extra clues if you know them better
 // *GOOD FOR BETRAYALS AND SUCH!*
+// - Mark lies ONLY before decisions, when you can ACT upon knowing that it's a lie!
+// - Tutorial
