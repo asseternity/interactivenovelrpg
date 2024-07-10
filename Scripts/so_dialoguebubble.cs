@@ -15,4 +15,6 @@ public class so_dialoguebubble : ScriptableObject
     public so_abilitycheck abilityCheck;
     public so_dialoguebubble abilityCheckSuccessPath;
     public so_dialoguebubble abilityCheckFailurePath;
+    public bool fromSchedule;
+    public bool startsScheduleOnEnd;
 }

@@ -20,6 +20,7 @@ public class BubbleSpawner : MonoBehaviour
     public GameObject abilityCheckShower;
     public GameObject logText;
     public GameObject dateKeeper;
+    public Stack<so_dialoguebubble> scheduleEventOrder = new Stack<so_dialoguebubble>();
 
     public void Start()
     {
