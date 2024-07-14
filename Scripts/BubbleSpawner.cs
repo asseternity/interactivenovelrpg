@@ -21,12 +21,14 @@ public class BubbleSpawner : MonoBehaviour
     public GameObject logText;
     public GameObject dateKeeper;
     public Stack<so_dialoguebubble> scheduleEventOrder = new Stack<so_dialoguebubble>();
+    public GameObject scheduleCanvas;
 
     public void Start()
     {
         Button continueButtonButton = continueButton.GetComponent<Button>();
         continueButtonButton.onClick.AddListener(() => SpawnBubble(startingDialogue));
         player.ResetStats();
+        scheduleCanvas.gameObject.SetActive(false);
     }
 
     public void SpawnBubble(so_dialoguebubble dialogue)
@@ -38,13 +40,17 @@ public class BubbleSpawner : MonoBehaviour
             {
                 if (dialogue.choices.Length == 0 && dialogue.abilityCheck == null)
                 {
-                    choicesSpawned = false;
-                    currentBubble = 0;
-                    Button continueButtonButton = continueButton.GetComponent<Button>();
-                    continueButtonButton.onClick.RemoveAllListeners();
-                    so_dialoguebubble chosenDialogue = dialogue.noChoiceNextDialogue;
-                    continueButton.onClick.AddListener(() => SpawnBubble(chosenDialogue));
-                    SpawnBubble(chosenDialogue);
+                    if (dialogue.startsScheduleOnEnd) { }
+                    else
+                    {
+                        choicesSpawned = false;
+                        currentBubble = 0;
+                        Button continueButtonButton = continueButton.GetComponent<Button>();
+                        continueButtonButton.onClick.RemoveAllListeners();
+                        so_dialoguebubble nextDialogue = dialogue.noChoiceNextDialogue;
+                        continueButton.onClick.AddListener(() => SpawnBubble(nextDialogue));
+                        SpawnBubble(nextDialogue);
+                    }
                 }
                 else if (dialogue.choices.Length > 0)
                 {
@@ -521,6 +527,17 @@ public class BubbleSpawner : MonoBehaviour
             resultingString = resultingString.Substring(0, markIndex);
         }
         return resultingString;
+    }
+
+    public void StartSchedule()
+    {
+        scheduleCanvas.gameObject.SetActive(true);
+        // add the next element of the last bubble to the bottom of the stack
+        // fill the stack in ScheduleOptionButton
+        // await for the stack to be = 8
+        // go through the stack in spawnbubble
+        // until the stack is empty
+        // and then just go as per usual
     }
 }
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d185266bde55ef4eb9445422a88a94c, type: 3}
+  m_Name: TestSchedule
+  m_EditorClassIdentifier: 
+  selectableActivities:
+  - {fileID: 11400000, guid: 82305a3b10a59664d881a894e2cc59a9, type: 2}
+  - {fileID: 11400000, guid: a45cc522ef39e6742a882745822fd7d7, type: 2}
+  - {fileID: 11400000, guid: 8be1ee6c3ddabad4eae0982f689338ba, type: 2}
+  - {fileID: 11400000, guid: ec080ba7125e21745a89c525ad65f4a5, type: 2}
+  - {fileID: 11400000, guid: 9871bbf677b0806489846162c9b93658, type: 2}
+  - {fileID: 11400000, guid: 45f0c653a5d00794daccec8e6ad2079f, type: 2}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScheduleManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ScheduleManager : MonoBehaviour
     public GameObject sundayBox;
     public GameObject activeBox;
     public List<GameObject> weekObjects = new List<GameObject>();
+    public so_scheduleoptions testActivityOptions;
 
     public void Awake()
     {
@@ -24,6 +26,7 @@ public class ScheduleManager : MonoBehaviour
         weekObjects.Add(fridayBox);
         weekObjects.Add(saturdayBox);
         weekObjects.Add(sundayBox);
+        FillOptions(testActivityOptions);
     }
 
     public void Update()
@@ -52,15 +55,63 @@ public class ScheduleManager : MonoBehaviour
     public void FillOptions(so_scheduleoptions currentList)
     {
         // get the buttons
-        GameObject optionButton0 = gameObject.transform.Find("optionButton").gameObject;
-        GameObject optionButton1 = gameObject.transform.Find("optionButton (1)").gameObject;
-        GameObject optionButton2 = gameObject.transform.Find("optionButton (2)").gameObject;
-        GameObject optionButton3 = gameObject.transform.Find("optionButton (3)").gameObject;
-        GameObject optionButton4 = gameObject.transform.Find("optionButton (4)").gameObject;
-        GameObject optionButton5 = gameObject.transform.Find("optionButton (5)").gameObject;
+        GameObject buttonsContainer = gameObject
+            .transform.Find("ScheduleOptionsContainer")
+            .gameObject;
+        GameObject optionButton0 = buttonsContainer
+            .gameObject.transform.Find("optionButton")
+            .gameObject;
+        GameObject optionButton1 = buttonsContainer
+            .gameObject.transform.Find("optionButton (1)")
+            .gameObject;
+        GameObject optionButton2 = buttonsContainer
+            .gameObject.transform.Find("optionButton (2)")
+            .gameObject;
+        GameObject optionButton3 = buttonsContainer
+            .gameObject.transform.Find("optionButton (3)")
+            .gameObject;
+        GameObject optionButton4 = buttonsContainer
+            .gameObject.transform.Find("optionButton (4)")
+            .gameObject;
+        GameObject optionButton5 = buttonsContainer
+            .gameObject.transform.Find("optionButton (5)")
+            .gameObject;
+
+        List<GameObject> optionButtons = new List<GameObject>();
+        optionButtons.Add(optionButton0);
+        optionButtons.Add(optionButton1);
+        optionButtons.Add(optionButton2);
+        optionButtons.Add(optionButton3);
+        optionButtons.Add(optionButton4);
+        optionButtons.Add(optionButton5);
+
+        // assign scripts to buttons
+        foreach (GameObject optionButton in optionButtons)
+        {
+            optionButton.AddComponent<ScheduleOptionButton>();
+        }
+
+        // remove all event listeners from buttons
+        for (int i = 0; i < optionButtons.Count; i++)
+        {
+            Button optionButtonButton = optionButtons[i].GetComponent<Button>();
+            optionButtonButton.onClick.RemoveAllListeners();
+        }
 
         // get the options (regardless of length)
+        for (int i = 0; i < currentList.selectableActivities.Count; i++)
+        {
+            // assign the activity to an inner script
+            ScheduleOptionButton optionButtonScript = optionButtons[i]
+                .GetComponent<ScheduleOptionButton>();
+            optionButtonScript.buttonActivity = currentList.selectableActivities[i];
+            Button optionButtonButton = optionButtons[i].GetComponent<Button>();
+            optionButtonButton.onClick.AddListener(() => optionButtonScript.ProvideActivity());
 
+            // change the text of the buttons
+            Text buttonText = optionButtons[i].GetComponentInChildren<Text>();
+            buttonText.text = currentList.selectableActivities[i].activityName;
+        }
 
         // implementation:
         //      - new SO: so_scheduleActivity: (1) name, (2) list of so_dialogueBubble progression, (3) currentIndex

@@ -20,19 +20,28 @@ public class ButtonColor : MonoBehaviour
     public void OnHoverEnter()
     {
         buttonText.color = hoverColor;
-        buttonImage.color = hoverColor;
+        if (buttonImage != null)
+        {
+            buttonImage.color = hoverColor;
+        }
     }
 
     public void OnHoverExit()
     {
         buttonText.color = originalColor;
-        buttonImage.color = originalColor;
+        if (buttonImage != null)
+        {
+            buttonImage.color = originalColor;
+        }
     }
 
     public void OnActivate()
     {
         buttonText.color = activeColor;
-        buttonImage.color = activeColor;
+        if (buttonImage != null)
+        {
+            buttonImage.color = activeColor;
+        }
         click.Play();
     }
 }
