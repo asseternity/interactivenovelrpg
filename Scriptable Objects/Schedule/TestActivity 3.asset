@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: TestActivity 3
   m_EditorClassIdentifier: 
   activityName: TestActivity3
-  activityProgression: []
+  activityProgression:
+  - {fileID: 11400000, guid: 472e1f72b292aab4f9068e1da7773a8e, type: 2}
   currentIndex: 0

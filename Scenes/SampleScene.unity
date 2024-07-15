@@ -225,7 +225,6 @@ RectTransform:
   - {fileID: 1271739989}
   - {fileID: 842261659}
   - {fileID: 628541382}
-  - {fileID: 1075168847}
   - {fileID: 2048945684}
   - {fileID: 585948122}
   - {fileID: 607293521}
@@ -4163,7 +4162,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &540100214
 RectTransform:
@@ -7582,11 +7581,11 @@ Transform:
   m_GameObject: {fileID: 1075168846}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 459.7323, y: 163.68073, z: 0}
+  m_LocalPosition: {x: 1419.7323, y: 703.6807, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 19421925}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1075168848
 MonoBehaviour:
@@ -7607,11 +7606,12 @@ MonoBehaviour:
   currentBubble: 0
   currentDialogue: {fileID: 0}
   choicesSpawned: 0
-  startingDialogue: {fileID: 11400000, guid: 230075349557357428a236b7387fb3e0, type: 2}
+  startingDialogue: {fileID: 11400000, guid: 58e4791e25edd614e80a9a9dbe7f6509, type: 2}
   player: {fileID: 11400000, guid: 8e94ab1158bb55445b57fa79e473dac8, type: 2}
   abilityCheckShower: {fileID: 1104131660}
   logText: {fileID: 1796576495}
   dateKeeper: {fileID: 1924517268}
+  scheduleCanvas: {fileID: 1738767510}
   choiceboxA: {fileID: 607293520}
   choiceboxB: {fileID: 585948121}
   choiceboxC: {fileID: 2048945683}
@@ -12299,7 +12299,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1738767515
 RectTransform:
@@ -14994,6 +14994,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 1075168847}
   - {fileID: 19421925}
   - {fileID: 705075912}
   - {fileID: 1384660199}

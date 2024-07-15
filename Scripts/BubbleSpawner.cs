@@ -36,50 +36,90 @@ public class BubbleSpawner : MonoBehaviour
         currentDialogue = dialogue;
         if (!choicesSpawned)
         {
-            if (dialogue.sentences[currentBubble] == "END")
+            if (scheduleEventOrder.Count == 0)
             {
-                if (dialogue.choices.Length == 0 && dialogue.abilityCheck == null)
+                if (dialogue.sentences[currentBubble] == "END")
                 {
-                    if (dialogue.startsScheduleOnEnd) { }
+                    if (dialogue.choices.Length == 0 && dialogue.abilityCheck == null)
+                    {
+                        if (dialogue.startsScheduleOnEnd)
+                        {
+                            StartSchedule(dialogue.noChoiceNextDialogue);
+                        }
+                        else
+                        {
+                            choicesSpawned = false;
+                            currentBubble = 0;
+                            Button continueButtonButton = continueButton.GetComponent<Button>();
+                            continueButtonButton.onClick.RemoveAllListeners();
+                            so_dialoguebubble nextDialogue = dialogue.noChoiceNextDialogue;
+                            continueButton.onClick.AddListener(() => SpawnBubble(nextDialogue));
+                            SpawnBubble(nextDialogue);
+                        }
+                    }
+                    else if (dialogue.choices.Length > 0)
+                    {
+                        DisplayChoices(dialogue);
+                    }
                     else
                     {
-                        choicesSpawned = false;
-                        currentBubble = 0;
-                        Button continueButtonButton = continueButton.GetComponent<Button>();
-                        continueButtonButton.onClick.RemoveAllListeners();
-                        so_dialoguebubble nextDialogue = dialogue.noChoiceNextDialogue;
-                        continueButton.onClick.AddListener(() => SpawnBubble(nextDialogue));
-                        SpawnBubble(nextDialogue);
+                        AbilityCheck(dialogue);
                     }
-                }
-                else if (dialogue.choices.Length > 0)
-                {
-                    DisplayChoices(dialogue);
                 }
                 else
                 {
-                    AbilityCheck(dialogue);
+                    // check if we are allowed to see this bubble
+                    if (dialogue.requirements[currentBubble] == "")
+                    {
+                        if (dialogue.sentences[currentBubble] == "IMAGE")
+                        {
+                            DrawImage(dialogue);
+                        }
+                        else
+                        {
+                            DrawBubble(dialogue);
+                        }
+                    }
+                    else
+                    {
+                        int nextViewableIndex = FindNextViewableIndex(dialogue);
+                        currentBubble = nextViewableIndex;
+                        DrawBubble(dialogue);
+                    }
                 }
             }
             else
             {
-                // check if we are allowed to see this bubble
-                if (dialogue.requirements[currentBubble] == "")
+                // check if END
+                if (currentDialogue.sentences[currentBubble] == "END")
                 {
-                    if (dialogue.sentences[currentBubble] == "IMAGE")
-                    {
-                        DrawImage(dialogue);
-                    }
-                    else
-                    {
-                        DrawBubble(dialogue);
-                    }
+                    so_dialoguebubble nextInSchedule = scheduleEventOrder.Pop();
+                    currentBubble = 0;
+                    Button continueButtonButton = continueButton.GetComponent<Button>();
+                    continueButtonButton.onClick.RemoveAllListeners();
+                    continueButton.onClick.AddListener(() => SpawnBubble(nextInSchedule));
+                    SpawnBubble(nextInSchedule);
                 }
                 else
                 {
-                    int nextViewableIndex = FindNextViewableIndex(dialogue);
-                    currentBubble = nextViewableIndex;
-                    DrawBubble(dialogue);
+                    // check if we are allowed to see this bubble
+                    if (dialogue.requirements[currentBubble] == "")
+                    {
+                        if (dialogue.sentences[currentBubble] == "IMAGE")
+                        {
+                            DrawImage(dialogue);
+                        }
+                        else
+                        {
+                            DrawBubble(dialogue);
+                        }
+                    }
+                    else
+                    {
+                        int nextViewableIndex = FindNextViewableIndex(dialogue);
+                        currentBubble = nextViewableIndex;
+                        DrawBubble(dialogue);
+                    }
                 }
             }
         }
@@ -529,15 +569,41 @@ public class BubbleSpawner : MonoBehaviour
         return resultingString;
     }
 
-    public void StartSchedule()
+    public void StartSchedule(so_dialoguebubble bubbleAfterSchedule)
     {
-        scheduleCanvas.gameObject.SetActive(true);
         // add the next element of the last bubble to the bottom of the stack
+        scheduleEventOrder.Push(bubbleAfterSchedule);
+        // show schedule canvas
+        scheduleCanvas.gameObject.SetActive(true);
+        // hide bubble canvas
+        canvas.gameObject.SetActive(false);
         // fill the stack in ScheduleOptionButton
         // await for the stack to be = 8
         // go through the stack in spawnbubble
         // until the stack is empty
         // and then just go as per usual
+    }
+
+    public void Update()
+    {
+        if (scheduleEventOrder.Count > 7)
+        {
+            // test
+            Debug.Log("Seven events added to the Stack");
+            // wait half a second
+            Invoke("FinishSchedule", 0.5f);
+        }
+    }
+
+    public void FinishSchedule()
+    {
+        // hide the schedule canvas
+        scheduleCanvas.gameObject.SetActive(false);
+        // show the bubble canvas
+        canvas.gameObject.SetActive(true);
+        // SpawnBubble
+        so_dialoguebubble firstInSchedule = scheduleEventOrder.Pop();
+        SpawnBubble(firstInSchedule);
     }
 }
 
@@ -551,5 +617,5 @@ public class BubbleSpawner : MonoBehaviour
 // - relationship mechanics that are not "approval meter". something about reading / knowing people better? like, you have no idea how
 // much they like you - you can only gauge by what they tell you - but you will be given extra clues if you know them better
 // *GOOD FOR BETRAYALS AND SUCH!*
-// - Mark lies ONLY before decisions, when you can ACT upon knowing that it's a lie!
+// - Mark lies ONLY before decisions, when you can ACT fon knowing that it's a lie!
 // - Tutorial
