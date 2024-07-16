@@ -22,6 +22,7 @@ public class BubbleSpawner : MonoBehaviour
     public GameObject dateKeeper;
     public Stack<so_dialoguebubble> scheduleEventOrder = new Stack<so_dialoguebubble>();
     public GameObject scheduleCanvas;
+    so_dialoguebubble firstInSchedule;
 
     public void Start()
     {
@@ -571,6 +572,8 @@ public class BubbleSpawner : MonoBehaviour
 
     public void StartSchedule(so_dialoguebubble bubbleAfterSchedule)
     {
+        // empty first in schedule
+        firstInSchedule = null;
         // add the next element of the last bubble to the bottom of the stack
         scheduleEventOrder.Push(bubbleAfterSchedule);
         // show schedule canvas
@@ -597,13 +600,17 @@ public class BubbleSpawner : MonoBehaviour
 
     public void FinishSchedule()
     {
+        Debug.Log("finish schedule invoke");
         // hide the schedule canvas
         scheduleCanvas.gameObject.SetActive(false);
         // show the bubble canvas
         canvas.gameObject.SetActive(true);
         // SpawnBubble
-        so_dialoguebubble firstInSchedule = scheduleEventOrder.Pop();
-        SpawnBubble(firstInSchedule);
+        if (firstInSchedule == null)
+        {
+            firstInSchedule = scheduleEventOrder.Pop();
+            SpawnBubble(firstInSchedule);
+        }
     }
 }
 

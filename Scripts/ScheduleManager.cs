@@ -40,6 +40,11 @@ public class ScheduleManager : MonoBehaviour
 
     public void moveToNextDay()
     {
+        Invoke("moveToNextDayFire", 0.1f);
+    }
+
+    public void moveToNextDayFire()
+    {
         Predicate<GameObject> match = x => x == activeBox;
         int index = weekObjects.FindIndex(match);
         if (index < 6)
@@ -110,7 +115,7 @@ public class ScheduleManager : MonoBehaviour
 
             // change the text of the buttons
             Text buttonText = optionButtons[i].GetComponentInChildren<Text>();
-            buttonText.text = currentList.selectableActivities[i].activityName;
+            buttonText.text = "+ " + currentList.selectableActivities[i].activityName;
         }
 
         // implementation:

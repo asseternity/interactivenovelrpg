@@ -25,9 +25,12 @@ public class ScheduleOptionButton : MonoBehaviour
         bubbleScript.scheduleEventOrder.Push(
             buttonActivity.activityProgression[buttonActivity.currentIndex]
         );
-        foreach (so_dialoguebubble bubble in bubbleScript.scheduleEventOrder)
-        {
-            Debug.Log(bubble);
-        }
+        Debug.Log(bubbleScript.scheduleEventOrder.Count);
+
+        // change the activeBox language
+        GameObject scheduleUI = GameObject.Find("ScheduleContainer");
+        ScheduleManager scheduleScript = scheduleUI.GetComponent<ScheduleManager>();
+        Text activeBoxText = scheduleScript.activeBox.transform.Find("Choice").GetComponent<Text>();
+        activeBoxText.text = buttonActivity.activityName;
     }
 }

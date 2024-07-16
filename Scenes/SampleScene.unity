@@ -913,7 +913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: -1}
+  m_AnchoredPosition: {x: 3, y: -1}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123776348
@@ -938,12 +938,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 02e16510347cf67499a3dcb0d008d873, type: 3}
-    m_FontSize: 48
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3081,7 +3081,6 @@ GameObject:
   - component: {fileID: 418097018}
   - component: {fileID: 418097017}
   - component: {fileID: 418097016}
-  - component: {fileID: 418097015}
   m_Layer: 5
   m_Name: Option (2)
   m_TagString: Untagged
@@ -3108,21 +3107,6 @@ RectTransform:
   m_AnchoredPosition: {x: 67, y: -20}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &418097015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418097013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d2098d0130f66498d7bfa6ca075cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverColor: {r: 0.2784314, g: 0.47058824, b: 1, a: 1}
-  activeColor: {r: 1, g: 0, b: 0.7411765, a: 1}
-  click: {fileID: 0}
 --- !u!114 &418097016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3140,7 +3124,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 418097015}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverEnter
           m_Mode: 1
@@ -3156,7 +3140,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 418097015}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverExit
           m_Mode: 1
@@ -3172,7 +3156,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 418097015}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnActivate
           m_Mode: 1
@@ -4500,7 +4484,6 @@ GameObject:
   - component: {fileID: 606302996}
   - component: {fileID: 606302995}
   - component: {fileID: 606302994}
-  - component: {fileID: 606302993}
   m_Layer: 5
   m_Name: Option (5)
   m_TagString: Untagged
@@ -4527,21 +4510,6 @@ RectTransform:
   m_AnchoredPosition: {x: 69, y: -18}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &606302993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606302991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d2098d0130f66498d7bfa6ca075cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverColor: {r: 0.2784314, g: 0.47058824, b: 1, a: 1}
-  activeColor: {r: 1, g: 0, b: 0.7411765, a: 1}
-  click: {fileID: 0}
 --- !u!114 &606302994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4559,7 +4527,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 606302993}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverEnter
           m_Mode: 1
@@ -4575,7 +4543,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 606302993}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverExit
           m_Mode: 1
@@ -4591,7 +4559,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 606302993}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnActivate
           m_Mode: 1
@@ -5359,7 +5327,6 @@ GameObject:
   - component: {fileID: 661587057}
   - component: {fileID: 661587056}
   - component: {fileID: 661587055}
-  - component: {fileID: 661587054}
   m_Layer: 5
   m_Name: Option (1)
   m_TagString: Untagged
@@ -5386,21 +5353,6 @@ RectTransform:
   m_AnchoredPosition: {x: 71, y: -19}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &661587054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661587052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d2098d0130f66498d7bfa6ca075cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverColor: {r: 0.2784314, g: 0.47058824, b: 1, a: 1}
-  activeColor: {r: 1, g: 0, b: 0.7411765, a: 1}
-  click: {fileID: 0}
 --- !u!114 &661587055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5418,7 +5370,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 661587054}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverEnter
           m_Mode: 1
@@ -5434,7 +5386,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 661587054}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverExit
           m_Mode: 1
@@ -5450,7 +5402,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 661587054}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnActivate
           m_Mode: 1
@@ -5917,12 +5869,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 02e16510347cf67499a3dcb0d008d873, type: 3}
-    m_FontSize: 48
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -7287,7 +7239,6 @@ GameObject:
   - component: {fileID: 1058435534}
   - component: {fileID: 1058435533}
   - component: {fileID: 1058435532}
-  - component: {fileID: 1058435531}
   m_Layer: 5
   m_Name: Option (4)
   m_TagString: Untagged
@@ -7314,21 +7265,6 @@ RectTransform:
   m_AnchoredPosition: {x: 65, y: -17}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1058435531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058435529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d2098d0130f66498d7bfa6ca075cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverColor: {r: 0.2784314, g: 0.47058824, b: 1, a: 1}
-  activeColor: {r: 1, g: 0, b: 0.7411765, a: 1}
-  click: {fileID: 0}
 --- !u!114 &1058435532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7346,7 +7282,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1058435531}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverEnter
           m_Mode: 1
@@ -7362,7 +7298,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1058435531}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverExit
           m_Mode: 1
@@ -7378,7 +7314,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1058435531}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnActivate
           m_Mode: 1
@@ -9191,7 +9127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22, y: -9}
+  m_AnchoredPosition: {x: 2, y: 2}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1268985945
@@ -9216,12 +9152,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 02e16510347cf67499a3dcb0d008d873, type: 3}
-    m_FontSize: 48
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -9469,7 +9405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21, y: -5}
+  m_AnchoredPosition: {x: -1, y: 1}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303781415
@@ -9494,12 +9430,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 02e16510347cf67499a3dcb0d008d873, type: 3}
-    m_FontSize: 48
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -9755,7 +9691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: -9}
+  m_AnchoredPosition: {x: 1, y: 2}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1329791613
@@ -9780,12 +9716,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 02e16510347cf67499a3dcb0d008d873, type: 3}
-    m_FontSize: 48
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -11953,7 +11889,6 @@ GameObject:
   - component: {fileID: 1717012627}
   - component: {fileID: 1717012626}
   - component: {fileID: 1717012625}
-  - component: {fileID: 1717012624}
   m_Layer: 5
   m_Name: Option (3)
   m_TagString: Untagged
@@ -11980,21 +11915,6 @@ RectTransform:
   m_AnchoredPosition: {x: 66, y: -12}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1717012624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717012622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d2098d0130f66498d7bfa6ca075cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverColor: {r: 0.2784314, g: 0.47058824, b: 1, a: 1}
-  activeColor: {r: 1, g: 0, b: 0.7411765, a: 1}
-  click: {fileID: 0}
 --- !u!114 &1717012625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12012,7 +11932,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1717012624}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverEnter
           m_Mode: 1
@@ -12028,7 +11948,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1717012624}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnHoverExit
           m_Mode: 1
@@ -12044,7 +11964,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1717012624}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ButtonColor, Assembly-CSharp
           m_MethodName: OnActivate
           m_Mode: 1
@@ -14351,7 +14271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -3}
+  m_AnchoredPosition: {x: 5, y: 2}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074808989
@@ -14376,12 +14296,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 02e16510347cf67499a3dcb0d008d873, type: 3}
-    m_FontSize: 48
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -14865,7 +14785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -12}
+  m_AnchoredPosition: {x: 7, y: 3}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2128554941
@@ -14890,12 +14810,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 02e16510347cf67499a3dcb0d008d873, type: 3}
-    m_FontSize: 48
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
