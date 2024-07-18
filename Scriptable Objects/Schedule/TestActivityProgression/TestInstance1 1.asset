@@ -19,8 +19,8 @@ MonoBehaviour:
   - 
   - 
   sentences:
-  - test instance 1
-  - test instance 1b
+  - event2
+  - event2
   - END
   images: []
   choices: []

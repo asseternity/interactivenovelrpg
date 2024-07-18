@@ -20,9 +20,10 @@ public class BubbleSpawner : MonoBehaviour
     public GameObject abilityCheckShower;
     public GameObject logText;
     public GameObject dateKeeper;
-    public Stack<so_dialoguebubble> scheduleEventOrder = new Stack<so_dialoguebubble>();
+    public Queue<so_dialoguebubble> scheduleEventOrder = new Queue<so_dialoguebubble>();
     public GameObject scheduleCanvas;
     so_dialoguebubble firstInSchedule;
+    so_dialoguebubble scheduleEndBubble;
 
     public void Start()
     {
@@ -94,7 +95,7 @@ public class BubbleSpawner : MonoBehaviour
                 // check if END
                 if (currentDialogue.sentences[currentBubble] == "END")
                 {
-                    so_dialoguebubble nextInSchedule = scheduleEventOrder.Pop();
+                    so_dialoguebubble nextInSchedule = scheduleEventOrder.Dequeue();
                     currentBubble = 0;
                     Button continueButtonButton = continueButton.GetComponent<Button>();
                     continueButtonButton.onClick.RemoveAllListeners();
@@ -574,8 +575,8 @@ public class BubbleSpawner : MonoBehaviour
     {
         // empty first in schedule
         firstInSchedule = null;
-        // add the next element of the last bubble to the bottom of the stack
-        scheduleEventOrder.Push(bubbleAfterSchedule);
+        // save the next main story bubble (after scheduled events end)
+        scheduleEndBubble = bubbleAfterSchedule;
         // show schedule canvas
         scheduleCanvas.gameObject.SetActive(true);
         // hide bubble canvas
@@ -589,7 +590,7 @@ public class BubbleSpawner : MonoBehaviour
 
     public void Update()
     {
-        if (scheduleEventOrder.Count > 7)
+        if (scheduleEventOrder.Count > 6)
         {
             // test
             Debug.Log("Seven events added to the Stack");
@@ -608,21 +609,30 @@ public class BubbleSpawner : MonoBehaviour
         // SpawnBubble
         if (firstInSchedule == null)
         {
-            firstInSchedule = scheduleEventOrder.Pop();
+            // add the next element of the last bubble to the end of the queue
+            scheduleEventOrder.Enqueue(scheduleEndBubble);
+            // clear the scheduleEndBubble var
+            scheduleEndBubble = null;
+            // start spawning events!
+            firstInSchedule = scheduleEventOrder.Peek();
             SpawnBubble(firstInSchedule);
         }
     }
 }
 
+// bugs:
+//      - regular ability checks paint bubbles like insight checks
+
 // major:
-// - at the beginning of every week - create your schedule by clicking and dragging classes [MAKE NEW CANVAS FOR THIS]
-// - whichever classes you pick for whichever day - you get asked logic questions and depending on your answer you get more or less of
-// the stat [NEW CANVAS FOR THIS]
+//      - whichever classes you pick for whichever day - you get asked logic questions and depending on your answer you get more or less of
+//      the stat [NEW CANVAS FOR THIS]
+//      - Main Menu
+//      - Saving
 
 // minor:
-// - reduce or gain stress and exhaustion throughout
-// - relationship mechanics that are not "approval meter". something about reading / knowing people better? like, you have no idea how
-// much they like you - you can only gauge by what they tell you - but you will be given extra clues if you know them better
-// *GOOD FOR BETRAYALS AND SUCH!*
-// - Mark lies ONLY before decisions, when you can ACT fon knowing that it's a lie!
-// - Tutorial
+//      - reduce or gain stress and exhaustion throughout
+//      - relationship mechanics that are not "approval meter". something about reading / knowing people better? like, you have no idea how
+//      much they like you - you can only gauge by what they tell you - but you will be given extra clues if you know them better
+//      *GOOD FOR BETRAYALS AND SUCH!*
+//      - Mark lies ONLY before decisions, when you can ACT fon knowing that it's a lie!
+//      - Tutorial

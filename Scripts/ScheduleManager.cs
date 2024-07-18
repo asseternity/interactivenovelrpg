@@ -111,7 +111,7 @@ public class ScheduleManager : MonoBehaviour
                 .GetComponent<ScheduleOptionButton>();
             optionButtonScript.buttonActivity = currentList.selectableActivities[i];
             Button optionButtonButton = optionButtons[i].GetComponent<Button>();
-            optionButtonButton.onClick.AddListener(() => optionButtonScript.ProvideActivity());
+            // optionButtonButton.onClick.AddListener(() => optionButtonScript.ProvideActivity());
 
             // change the text of the buttons
             Text buttonText = optionButtons[i].GetComponentInChildren<Text>();

@@ -22,7 +22,7 @@ public class ScheduleOptionButton : MonoBehaviour
         bubbleSpawner = GameObject.Find("/BubbleSpawner").gameObject;
         Debug.Log(bubbleSpawner);
         BubbleSpawner bubbleScript = bubbleSpawner.GetComponent<BubbleSpawner>();
-        bubbleScript.scheduleEventOrder.Push(
+        bubbleScript.scheduleEventOrder.Enqueue(
             buttonActivity.activityProgression[buttonActivity.currentIndex]
         );
         Debug.Log(bubbleScript.scheduleEventOrder.Count);
