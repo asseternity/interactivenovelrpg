@@ -19,8 +19,8 @@ MonoBehaviour:
   - 
   - 
   sentences:
-  - some
-  - text
+  - event3
+  - event3
   - END
   images: []
   choices: []

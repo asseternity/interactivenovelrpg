@@ -7,13 +7,17 @@ public class CanvasSwitcher : MonoBehaviour
     public Canvas canvas2;
     public Canvas canvas3;
     public Canvas canvas4;
+    public Canvas mainMenuCanvas;
+    public Canvas energyAndDateCanvas;
 
     public void Start()
     {
-        canvas1.gameObject.SetActive(true);
+        canvas1.gameObject.SetActive(false);
         canvas2.gameObject.SetActive(false);
         canvas3.gameObject.SetActive(false);
         canvas4.gameObject.SetActive(false);
+        mainMenuCanvas.gameObject.SetActive(true);
+        energyAndDateCanvas.gameObject.SetActive(false);
     }
 
     public void SetCanvas1()
