@@ -6368,9 +6368,10 @@ MonoBehaviour:
   mainMenuCanvas: {fileID: 1459354198}
   energyAndDateCanvas: {fileID: 1330292000}
   pauseMenuCanvas: {fileID: 983998982}
-  scheduleUI: {fileID: 1738767514}
+  scheduleCanvas: {fileID: 1738767514}
   gameStarted: 0
   isPaused: 0
+  wasUsingSchedule: 0
 --- !u!4 &705075912
 Transform:
   m_ObjectHideFlags: 0
