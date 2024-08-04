@@ -24,6 +24,7 @@ public class BubbleSpawner : MonoBehaviour
     public GameObject scheduleCanvas;
     so_dialoguebubble firstInSchedule;
     so_dialoguebubble scheduleEndBubble;
+    public so_dialoguebubble lastShownBubble;
 
     public void Start()
     {
@@ -187,6 +188,9 @@ public class BubbleSpawner : MonoBehaviour
 
     public void DrawBubble(so_dialoguebubble dialogue)
     {
+        // store last bubble
+        lastShownBubble = dialogue;
+        // scroll everything down
         MoveBubbles("text");
         // store position of spawner empty gameObect
         Vector2 spawnerPosition = gameObject.transform.position;
@@ -215,6 +219,9 @@ public class BubbleSpawner : MonoBehaviour
 
     public void DrawImage(so_dialoguebubble dialogue)
     {
+        // store last bubble
+        lastShownBubble = dialogue;
+        // scroll everything down
         MoveBubbles("image");
         // store position of spawner empty gameObect
         Vector2 spawnerPosition = gameObject.transform.position;

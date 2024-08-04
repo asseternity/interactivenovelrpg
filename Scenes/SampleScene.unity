@@ -7764,7 +7764,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 975455599}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1060827253}
+        m_TargetAssemblyTypeName: SaveButtonOperator, Assembly-CSharp
+        m_MethodName: LoadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &975455599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7815,7 +7827,6 @@ GameObject:
   - component: {fileID: 983998982}
   - component: {fileID: 983998981}
   - component: {fileID: 983998980}
-  - component: {fileID: 983998979}
   m_Layer: 5
   m_Name: PauseMenuUI
   m_TagString: Untagged
@@ -7823,19 +7834,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &983998979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983998978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c219cdbbae6fa40a825f3284b14879, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 8e94ab1158bb55445b57fa79e473dac8, type: 2}
 --- !u!114 &983998980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8280,6 +8278,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044090231}
   m_CullTransparentMesh: 1
+--- !u!1 &1060827252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1060827254}
+  - component: {fileID: 1060827253}
+  m_Layer: 0
+  m_Name: GameSaverLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1060827253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060827252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e22fba292b50148af9a4c13f9fb678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPlayerStats: {fileID: 11400000, guid: 8e94ab1158bb55445b57fa79e473dac8, type: 2}
+  scheduleActivity1: {fileID: 11400000, guid: 82305a3b10a59664d881a894e2cc59a9, type: 2}
+  BubbleSpawner: {fileID: 1075168846}
+  MainMenuContainer: {fileID: 185659008}
+--- !u!4 &1060827254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060827252}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1068.239, y: 537.34174, z: 12.093092}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1062670623
 GameObject:
   m_ObjectHideFlags: 0
@@ -8489,7 +8535,7 @@ MonoBehaviour:
   currentBubble: 0
   currentDialogue: {fileID: 0}
   choicesSpawned: 0
-  startingDialogue: {fileID: 11400000, guid: 58e4791e25edd614e80a9a9dbe7f6509, type: 2}
+  startingDialogue: {fileID: 11400000, guid: 8878b25037454fe4b9c35d589d4764f3, type: 2}
   player: {fileID: 11400000, guid: 8e94ab1158bb55445b57fa79e473dac8, type: 2}
   abilityCheckShower: {fileID: 1104131660}
   logText: {fileID: 1796576495}
@@ -9654,7 +9700,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Load Game
+  m_Text: Save Game
 --- !u!222 &1191790141
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12575,7 +12621,6 @@ GameObject:
   - component: {fileID: 1459354198}
   - component: {fileID: 1459354197}
   - component: {fileID: 1459354196}
-  - component: {fileID: 1459354195}
   m_Layer: 5
   m_Name: MainMenuUI
   m_TagString: Untagged
@@ -12583,19 +12628,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1459354195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459354194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c219cdbbae6fa40a825f3284b14879, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 8e94ab1158bb55445b57fa79e473dac8, type: 2}
 --- !u!114 &1459354196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12771,7 +12803,7 @@ GameObject:
   - component: {fileID: 1504584761}
   - component: {fileID: 1504584760}
   m_Layer: 5
-  m_Name: PM_LoadGameButton
+  m_Name: PM_SaveGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12916,7 +12948,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1504584763}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1060827253}
+        m_TargetAssemblyTypeName: SaveButtonOperator, Assembly-CSharp
+        m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1504584763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17546,3 +17590,4 @@ SceneRoots:
   - {fileID: 540100214}
   - {fileID: 114064025}
   - {fileID: 1104131662}
+  - {fileID: 1060827254}
