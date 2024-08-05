@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveButtonOperator : MonoBehaviour
 {
@@ -7,11 +8,15 @@ public class SaveButtonOperator : MonoBehaviour
     public so_scheduleactivity scheduleActivity1;
     public GameObject BubbleSpawner;
     public GameObject MainMenuContainer;
+    public GameObject PauseCanvas;
+    public GameObject MainMenuCanvas;
+    public GameObject SaveSlotPickerCanvas;
+    public GameObject LoadSlotPickerCanvas;
 
-    public void SaveGame()
+    public void SaveGame(int slot, GameObject saveSlotButton)
     {
         // overall save path
-        string savePath = Application.persistentDataPath + "/save1";
+        string savePath = Application.persistentDataPath + "/save" + slot.ToString();
         // Ensure directory exists
         if (!Directory.Exists(savePath))
         {
@@ -36,14 +41,20 @@ public class SaveButtonOperator : MonoBehaviour
         int currentBubbleNumber = bubbleScript.currentBubble;
         string bubbleNumber_path = savePath + "/bubbleNumber.txt";
         File.WriteAllText(bubbleNumber_path, currentBubbleNumber.ToString());
+
+        // change the text of the button
+        Text saveSlotButtonText = saveSlotButton.GetComponentInChildren<Text>();
+        string saveTitle = lastBubble.sentences[currentBubbleNumber].Substring(0, 7) + "...";
+        saveSlotButtonText.text = saveTitle;
+
         // inform player
         Debug.Log("Data saved in: " + savePath);
     }
 
-    public void LoadGame()
+    public void LoadGame(int slot)
     {
         // get all paths
-        string loadPath = Application.persistentDataPath + "/save1";
+        string loadPath = Application.persistentDataPath + "/save" + slot.ToString();
         string playerStats_loadPath = loadPath + "/playerStats.json";
         string activity1_loadPath = loadPath + "/activity1.json";
         string bubble_loadPath = loadPath + "/bubble.json";
@@ -71,6 +82,40 @@ public class SaveButtonOperator : MonoBehaviour
         else
         {
             Debug.Log("Invalid data at: " + loadPath);
+        }
+    }
+
+    public void MoveToSaveSlotSelection()
+    {
+        PauseCanvas.SetActive(false);
+        SaveSlotPickerCanvas.SetActive(true);
+    }
+
+    public void MoveToLoadSlotSelection()
+    {
+        MainMenuCanvas.SetActive(false);
+        LoadSlotPickerCanvas.SetActive(true);
+
+        // this needs to populate the slots with proper names
+        string savePath = Application.persistentDataPath + "/save";
+
+        for (int i = 1; i < 5; i++)
+        {
+            string eachSavePath = savePath + i.ToString();
+            if (!Directory.Exists(eachSavePath))
+            {
+                string eachLoadSlotButtonName = "LoadSlotButton" + i.ToString();
+                Transform LoadSlotPickerContainerTransform = LoadSlotPickerCanvas.transform.Find(
+                    "LoadSlotPickerContainer"
+                );
+                GameObject LoadSlotPickerContainer = LoadSlotPickerContainerTransform.gameObject;
+                Transform eachLoadSlotButtonTransform = LoadSlotPickerContainer.transform.Find(
+                    eachLoadSlotButtonName
+                );
+                GameObject eachLoadSlotButton = eachLoadSlotButtonTransform.gameObject;
+                Text buttonText = eachLoadSlotButton.GetComponent<Text>();
+                // grab and change the button text here
+            }
         }
     }
 }
