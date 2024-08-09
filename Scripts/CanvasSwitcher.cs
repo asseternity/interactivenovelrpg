@@ -12,6 +12,8 @@ public class CanvasSwitcher : MonoBehaviour
     public Canvas energyAndDateCanvas;
     public Canvas pauseMenuCanvas;
     public Canvas scheduleCanvas;
+    public Canvas saveSlotsUI;
+    public Canvas loadSlotsUI;
 
     public void Start()
     {
@@ -22,6 +24,8 @@ public class CanvasSwitcher : MonoBehaviour
         mainMenuCanvas.gameObject.SetActive(true);
         energyAndDateCanvas.gameObject.SetActive(false);
         pauseMenuCanvas.gameObject.SetActive(false);
+        saveSlotsUI.gameObject.SetActive(false);
+        loadSlotsUI.gameObject.SetActive(false);
     }
 
     public void Update()
@@ -90,7 +94,7 @@ public class CanvasSwitcher : MonoBehaviour
 
     public void TogglePause()
     {
-        if (gameStarted)
+        if (gameStarted && !saveSlotsUI.isActiveAndEnabled && !loadSlotsUI.isActiveAndEnabled)
         {
             if (isPaused)
             {
@@ -129,5 +133,30 @@ public class CanvasSwitcher : MonoBehaviour
                 isPaused = true;
             }
         }
+    }
+
+    public void ExitToMainMenu()
+    {
+        canvas1.gameObject.SetActive(false);
+        canvas2.gameObject.SetActive(false);
+        canvas3.gameObject.SetActive(false);
+        canvas4.gameObject.SetActive(false);
+        mainMenuCanvas.gameObject.SetActive(true);
+        energyAndDateCanvas.gameObject.SetActive(false);
+        pauseMenuCanvas.gameObject.SetActive(false);
+        saveSlotsUI.gameObject.SetActive(false);
+        loadSlotsUI.gameObject.SetActive(false);
+    }
+
+    public void SaveSlotsBack()
+    {
+        saveSlotsUI.gameObject.SetActive(false);
+        pauseMenuCanvas.gameObject.SetActive(true);
+    }
+
+    public void LoadSlotsBack()
+    {
+        loadSlotsUI.gameObject.SetActive(false);
+        mainMenuCanvas.gameObject.SetActive(true);
     }
 }

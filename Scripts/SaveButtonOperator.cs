@@ -12,6 +12,7 @@ public class SaveButtonOperator : MonoBehaviour
     public GameObject MainMenuCanvas;
     public GameObject SaveSlotPickerCanvas;
     public GameObject LoadSlotPickerCanvas;
+    public so_dialoguebubble tempBubble;
 
     public void SaveGame(int slot, GameObject saveSlotButton)
     {
@@ -44,7 +45,7 @@ public class SaveButtonOperator : MonoBehaviour
 
         // change the text of the button
         Text saveSlotButtonText = saveSlotButton.GetComponentInChildren<Text>();
-        string saveTitle = lastBubble.sentences[currentBubbleNumber].Substring(0, 7) + "...";
+        string saveTitle = lastBubble.sentences[currentBubbleNumber].Substring(0, 12) + "...";
         saveSlotButtonText.text = saveTitle;
 
         // inform player
@@ -93,6 +94,8 @@ public class SaveButtonOperator : MonoBehaviour
 
     public void MoveToLoadSlotSelection()
     {
+        Debug.Log("MoveToLoadSlotSelection() called!");
+
         MainMenuCanvas.SetActive(false);
         LoadSlotPickerCanvas.SetActive(true);
 
@@ -102,8 +105,11 @@ public class SaveButtonOperator : MonoBehaviour
         for (int i = 1; i < 5; i++)
         {
             string eachSavePath = savePath + i.ToString();
-            if (!Directory.Exists(eachSavePath))
+            if (Directory.Exists(eachSavePath))
             {
+                // testing
+                Debug.Log("Found a save file!");
+                // searching for data
                 string eachLoadSlotButtonName = "LoadSlotButton" + i.ToString();
                 Transform LoadSlotPickerContainerTransform = LoadSlotPickerCanvas.transform.Find(
                     "LoadSlotPickerContainer"
@@ -114,7 +120,17 @@ public class SaveButtonOperator : MonoBehaviour
                 );
                 GameObject eachLoadSlotButton = eachLoadSlotButtonTransform.gameObject;
                 Text buttonText = eachLoadSlotButton.GetComponent<Text>();
-                // grab and change the button text here
+                // grab and store the bubble to grab the so_bubble object
+                string eachBubbleLoadPath = eachSavePath + "/bubble.json";
+                string bubble_json = File.ReadAllText(eachBubbleLoadPath);
+                // *************this part bugs out********************
+                JsonUtility.FromJsonOverwrite(bubble_json, tempBubble);
+                tempBubble = JsonUtility.FromJson<so_dialoguebubble>(bubble_json);
+                // grab and store bubble number to store the particular sentence in the bubble
+                string eachNumberLoadPath = eachSavePath + "/bubbleNumber.txt";
+                int tempBubbleNumber = int.Parse(File.ReadAllText(eachNumberLoadPath));
+                // change the text
+                buttonText.text = tempBubble.sentences[tempBubbleNumber];
             }
         }
     }
