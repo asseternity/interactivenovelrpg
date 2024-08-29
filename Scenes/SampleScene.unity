@@ -2101,9 +2101,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SaveSlotClickFunction, Assembly-CSharp
-        m_MethodName: SaveSlotClicked
+      - m_Target: {fileID: 705075911}
+        m_TargetAssemblyTypeName: CanvasSwitcher, Assembly-CSharp
+        m_MethodName: LoadSlotsBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3890,9 +3890,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SaveSlotClickFunction, Assembly-CSharp
-        m_MethodName: SaveSlotClicked
+      - m_Target: {fileID: 705075911}
+        m_TargetAssemblyTypeName: CanvasSwitcher, Assembly-CSharp
+        m_MethodName: SaveSlotsBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7619,6 +7619,7 @@ GameObject:
   - component: {fileID: 739073976}
   - component: {fileID: 739073975}
   - component: {fileID: 739073974}
+  - component: {fileID: 739073979}
   m_Layer: 5
   m_Name: LoadSlotButton2
   m_TagString: Untagged
@@ -7765,7 +7766,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 739073977}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 739073979}
+        m_TargetAssemblyTypeName: SaveSlotClickFunction, Assembly-CSharp
+        m_MethodName: LoadSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &739073977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7804,6 +7817,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739073972}
   m_CullTransparentMesh: 1
+--- !u!114 &739073979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739073972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 493e243070dd40f4180de9386098c0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSaverLoader: {fileID: 1060827252}
+  saveSlot: 2
+  saveSlotButton: {fileID: 0}
 --- !u!1 &759409615
 GameObject:
   m_ObjectHideFlags: 0
@@ -8582,6 +8610,7 @@ GameObject:
   - component: {fileID: 838425757}
   - component: {fileID: 838425756}
   - component: {fileID: 838425755}
+  - component: {fileID: 838425760}
   m_Layer: 5
   m_Name: LoadSlotButton1
   m_TagString: Untagged
@@ -8728,7 +8757,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 838425758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 838425760}
+        m_TargetAssemblyTypeName: SaveSlotClickFunction, Assembly-CSharp
+        m_MethodName: LoadSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &838425758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8767,6 +8808,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838425753}
   m_CullTransparentMesh: 1
+--- !u!114 &838425760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838425753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 493e243070dd40f4180de9386098c0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSaverLoader: {fileID: 1060827252}
+  saveSlot: 1
+  saveSlotButton: {fileID: 0}
 --- !u!1 &842261658
 GameObject:
   m_ObjectHideFlags: 0
@@ -8871,6 +8927,7 @@ GameObject:
   - component: {fileID: 844315580}
   - component: {fileID: 844315579}
   - component: {fileID: 844315578}
+  - component: {fileID: 844315583}
   m_Layer: 5
   m_Name: LoadSlotButton4
   m_TagString: Untagged
@@ -9017,7 +9074,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 844315581}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 844315583}
+        m_TargetAssemblyTypeName: SaveSlotClickFunction, Assembly-CSharp
+        m_MethodName: LoadSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &844315581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9056,6 +9125,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844315576}
   m_CullTransparentMesh: 1
+--- !u!114 &844315583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844315576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 493e243070dd40f4180de9386098c0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSaverLoader: {fileID: 1060827252}
+  saveSlot: 4
+  saveSlotButton: {fileID: 0}
 --- !u!1 &869492143
 GameObject:
   m_ObjectHideFlags: 0
@@ -10617,6 +10701,7 @@ MonoBehaviour:
   MainMenuCanvas: {fileID: 1459354194}
   SaveSlotPickerCanvas: {fileID: 561626782}
   LoadSlotPickerCanvas: {fileID: 608072209}
+  tempBubble: {fileID: 0}
 --- !u!4 &1060827254
 Transform:
   m_ObjectHideFlags: 0
@@ -11557,7 +11642,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1142142696}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 705075911}
+        m_TargetAssemblyTypeName: CanvasSwitcher, Assembly-CSharp
+        m_MethodName: ExitToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1142142696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15791,6 +15888,7 @@ GameObject:
   - component: {fileID: 1621098240}
   - component: {fileID: 1621098239}
   - component: {fileID: 1621098238}
+  - component: {fileID: 1621098243}
   m_Layer: 5
   m_Name: LoadSlotButton3
   m_TagString: Untagged
@@ -15937,7 +16035,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1621098241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621098243}
+        m_TargetAssemblyTypeName: SaveSlotClickFunction, Assembly-CSharp
+        m_MethodName: LoadSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1621098241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15976,6 +16086,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621098236}
   m_CullTransparentMesh: 1
+--- !u!114 &1621098243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621098236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 493e243070dd40f4180de9386098c0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSaverLoader: {fileID: 1060827252}
+  saveSlot: 3
+  saveSlotButton: {fileID: 0}
 --- !u!1 &1627460187
 GameObject:
   m_ObjectHideFlags: 0

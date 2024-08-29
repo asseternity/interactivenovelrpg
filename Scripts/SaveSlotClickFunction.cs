@@ -12,4 +12,11 @@ public class SaveSlotClickFunction : MonoBehaviour
         SaveButtonOperator saveLoadScript = gameSaverLoader.GetComponent<SaveButtonOperator>();
         saveLoadScript.SaveGame(saveSlot, saveSlotButton);
     }
+
+    public void LoadSlotClicked()
+    {
+        saveSlotButton = gameObject;
+        SaveButtonOperator saveLoadScript = gameSaverLoader.GetComponent<SaveButtonOperator>();
+        saveLoadScript.LoadGame(saveSlot);
+    }
 }
