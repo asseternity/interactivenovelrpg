@@ -13,7 +13,6 @@ public class BubbleSpawner : MonoBehaviour
     public List<GameObject> bubbles = new List<GameObject>();
     public int currentBubble = 0;
     public so_dialoguebubble currentDialogue;
-    GameObject bubbleToDelete;
     public bool choicesSpawned = false;
     public so_dialoguebubble startingDialogue;
     public so_playerstats player;
@@ -28,7 +27,13 @@ public class BubbleSpawner : MonoBehaviour
 
     public void Start()
     {
+        scheduleCanvas.gameObject.SetActive(false);
+    }
+
+    public void StartGame()
+    {
         Button continueButtonButton = continueButton.GetComponent<Button>();
+        continueButtonButton.onClick.RemoveAllListeners();
         continueButtonButton.onClick.AddListener(() => SpawnBubble(startingDialogue));
         player.ResetStats();
         scheduleCanvas.gameObject.SetActive(false);
@@ -291,6 +296,11 @@ public class BubbleSpawner : MonoBehaviour
             bubbles.Remove(bubble);
             Destroy(bubble, 0f);
         }
+    }
+
+    public void WipeBubbles()
+    {
+        bubbles.ForEach(b => Destroy(b, 0f));
     }
 
     public GameObject choiceboxA;

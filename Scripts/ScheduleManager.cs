@@ -133,7 +133,8 @@ public class ScheduleManager : MonoBehaviour
     // [v] 1) add a new field to so_dialogueBubble: bool fromSchedule
     // [v] 2) add a new field to so_dialogueBubble: bool startSchedule
     // [v] 3) add a new so_scheduleProgress, with all activities and int levels
-    // [_] 4) edit bubbleScript - have a stack of next so_dialogueBubbles - activated when (startSchedule)
-    // [_] 5) populate the stack as player clicks on activities with the current level of so_schedule progress
-    // [_] 6) fill the above methods
+    // [v] 4) edit bubbleScript - have a stack of next so_dialogueBubbles - activated when (startSchedule)
+    // [v] 5) populate the stack as player clicks on activities with the current level of so_schedule progress
+    // [v] 6) fill the above methods
+    // Note - queue, not stack
 }

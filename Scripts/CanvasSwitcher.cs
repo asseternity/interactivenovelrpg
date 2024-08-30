@@ -137,6 +137,9 @@ public class CanvasSwitcher : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        isPaused = false;
+        gameStarted = false;
+        wasUsingSchedule = false;
         canvas1.gameObject.SetActive(false);
         canvas2.gameObject.SetActive(false);
         canvas3.gameObject.SetActive(false);

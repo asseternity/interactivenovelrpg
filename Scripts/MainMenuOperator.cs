@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class MainMenuOperator : MonoBehaviour
     public GameObject energyAndDateCanvas;
     public GameObject canvasSwitcher;
     public GameObject loadSlotPickerCanvas;
+    public GameObject BubbleSpawner;
 
     public void StartNewGame()
     {
@@ -19,5 +21,12 @@ public class MainMenuOperator : MonoBehaviour
         // allow pausing
         CanvasSwitcher canvasSwitcherScript = canvasSwitcher.GetComponent<CanvasSwitcher>();
         canvasSwitcherScript.gameStarted = true;
+
+        // reset bubbleScript
+        BubbleSpawner bubbleScript = BubbleSpawner.GetComponent<BubbleSpawner>();
+        bubbleScript.WipeBubbles();
+        bubbleScript.bubbles = new List<GameObject>();
+        bubbleScript.StartGame();
+        bubbleScript.currentBubble = 0;
     }
 }

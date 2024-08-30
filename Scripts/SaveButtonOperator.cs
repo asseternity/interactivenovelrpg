@@ -13,6 +13,7 @@ public class SaveButtonOperator : MonoBehaviour
     public GameObject SaveSlotPickerCanvas;
     public GameObject LoadSlotPickerCanvas;
     public so_dialoguebubble tempBubble;
+    public GameObject CanvasSwitcher;
 
     public void SaveGame(int slot, GameObject saveSlotButton)
     {
@@ -97,8 +98,12 @@ public class SaveButtonOperator : MonoBehaviour
 
     public void MoveToSaveSlotSelection()
     {
-        PauseCanvas.SetActive(false);
-        SaveSlotPickerCanvas.SetActive(true);
+        CanvasSwitcher canvasSwitcherScript = CanvasSwitcher.GetComponent<CanvasSwitcher>();
+        if (!canvasSwitcherScript.wasUsingSchedule)
+        {
+            PauseCanvas.SetActive(false);
+            SaveSlotPickerCanvas.SetActive(true);
+        }
     }
 
     public void MoveToLoadSlotSelection()
@@ -154,3 +159,8 @@ public class SaveButtonOperator : MonoBehaviour
 }
 
 // to fix: add schedules to save system
+// to save schedules I need to: block saving while scheduling is active
+// save the queue, load it and apply it to bubbleScript
+// if not null, do the same with scheduleEndBubble
+// to fix: fill the boxes for OVERsaving
+// to fix: load during gameplay
