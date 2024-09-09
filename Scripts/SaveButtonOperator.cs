@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +41,19 @@ public class SaveButtonOperator : MonoBehaviour
         string bubble_path = savePath + "/bubble.json";
         string bubble_json = JsonUtility.ToJson(lastBubble);
         File.WriteAllText(bubble_path, bubble_json);
+        // also grab the queue
+        Queue<so_dialoguebubble> currentQueue = new Queue<so_dialoguebubble>();
+        currentQueue = bubbleScript.scheduleEventOrder;
+        string queue_path = savePath + "/queue.json";
+        string queue_json = JsonUtility.ToJson(currentQueue);
+        File.WriteAllText(queue_path, queue_json);
+        // save scheduleEndBubble
+        if (bubbleScript.scheduleEndBubble != null)
+        {
+            string SEB_path = savePath + "/SEB.json";
+            string SEB_json = JsonUtility.ToJson(bubbleScript.scheduleEndBubble);
+            File.WriteAllText(SEB_path, SEB_json);
+        }
         // grab and save current bubble number
         int currentBubbleNumber = bubbleScript.currentBubble;
         string bubbleNumber_path = savePath + "/bubbleNumber.txt";
@@ -70,22 +85,38 @@ public class SaveButtonOperator : MonoBehaviour
         string activity1_loadPath = loadPath + "/activity1.json";
         string bubble_loadPath = loadPath + "/bubble.json";
         string bubbleNumber_loadPath = loadPath + "/bubbleNumber.txt";
+        string queue_loadPath = loadPath + "/queue.json";
         // check if all files exist
-        if (File.Exists(playerStats_loadPath) && File.Exists(activity1_loadPath))
+        if (
+            File.Exists(playerStats_loadPath)
+            && File.Exists(activity1_loadPath)
+            && File.Exists(bubble_loadPath)
+            && File.Exists(bubbleNumber_loadPath)
+        )
         {
+            BubbleSpawner bubbleScript = BubbleSpawner.GetComponent<BubbleSpawner>();
             // load so_playerStats
             string playerStats_json = File.ReadAllText(playerStats_loadPath);
-            JsonUtility.FromJsonOverwrite(playerStats_json, currentPlayerStats);
+            JsonUtility.FromJsonOverwrite(playerStats_json, bubbleScript.player);
             // load so_scheduleActivity
             string activity1_json = File.ReadAllText(activity1_loadPath);
             JsonUtility.FromJsonOverwrite(activity1_json, scheduleActivity1);
-            Debug.Log("All necessary data is present at: " + loadPath);
+            // ***[_] this will later go to the exact activity objects***
             // load current bubble
             string bubble_json = File.ReadAllText(bubble_loadPath);
             int bubbleNumber = int.Parse(File.ReadAllText(bubbleNumber_loadPath));
-            BubbleSpawner bubbleScript = BubbleSpawner.GetComponent<BubbleSpawner>();
             JsonUtility.FromJsonOverwrite(bubble_json, bubbleScript.startingDialogue);
             bubbleScript.currentBubble = bubbleNumber;
+            // load current queue
+            string queue_json = File.ReadAllText(queue_loadPath);
+            JsonUtility.FromJsonOverwrite(queue_json, bubbleScript.scheduleEventOrder);
+            // load scheduleEndBubble
+            string SEB_loadPath = loadPath + "/SEB.json";
+            if (File.Exists(SEB_loadPath))
+            {
+                string SEB_json = File.ReadAllText(SEB_loadPath);
+                JsonUtility.FromJsonOverwrite(SEB_json, bubbleScript.scheduleEndBubble);
+            }
             // start game
             MainMenuOperator mmScript = MainMenuContainer.GetComponent<MainMenuOperator>();
             mmScript.StartNewGame();
@@ -132,7 +163,6 @@ public class SaveButtonOperator : MonoBehaviour
                 // grab and store the bubble to grab the so_bubble object
                 string eachBubbleLoadPath = eachSavePath + "/bubble.json";
                 string bubble_json = File.ReadAllText(eachBubbleLoadPath);
-                // *************this part bugs out********************
                 if (tempBubble == null)
                 {
                     tempBubble = ScriptableObject.CreateInstance<so_dialoguebubble>();
@@ -158,9 +188,5 @@ public class SaveButtonOperator : MonoBehaviour
     }
 }
 
-// to fix: add schedules to save system
-// to save schedules I need to: block saving while scheduling is active
-// save the queue, load it and apply it to bubbleScript
-// if not null, do the same with scheduleEndBubble
 // to fix: fill the boxes for OVERsaving
 // to fix: load during gameplay

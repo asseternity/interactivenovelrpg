@@ -25,8 +25,27 @@ public class MainMenuOperator : MonoBehaviour
         // reset bubbleScript
         BubbleSpawner bubbleScript = BubbleSpawner.GetComponent<BubbleSpawner>();
         bubbleScript.WipeBubbles();
+        bubbleScript.ResetPlayerStats();
         bubbleScript.bubbles = new List<GameObject>();
         bubbleScript.StartGame();
         bubbleScript.currentBubble = 0;
+    }
+
+    public void LoadGame()
+    {
+        bubbleCanvas.gameObject.SetActive(true);
+        energyAndDateCanvas.gameObject.SetActive(true);
+        mainMenuCanvas.gameObject.SetActive(false);
+        loadSlotPickerCanvas.gameObject.SetActive(false);
+
+        // allow pausing
+        CanvasSwitcher canvasSwitcherScript = canvasSwitcher.GetComponent<CanvasSwitcher>();
+        canvasSwitcherScript.gameStarted = true;
+
+        // load data to bubbleScript
+        BubbleSpawner bubbleScript = BubbleSpawner.GetComponent<BubbleSpawner>();
+        bubbleScript.WipeBubbles();
+        bubbleScript.bubbles = new List<GameObject>();
+        bubbleScript.StartGame();
     }
 }

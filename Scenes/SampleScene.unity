@@ -3039,6 +3039,7 @@ MonoBehaviour:
   energyAndDateCanvas: {fileID: 1330291997}
   canvasSwitcher: {fileID: 705075910}
   loadSlotPickerCanvas: {fileID: 608072209}
+  BubbleSpawner: {fileID: 1075168846}
 --- !u!1 &189780196
 GameObject:
   m_ObjectHideFlags: 0
@@ -14075,6 +14076,7 @@ MonoBehaviour:
   energyAndDateCanvas: {fileID: 1330291997}
   canvasSwitcher: {fileID: 0}
   loadSlotPickerCanvas: {fileID: 0}
+  BubbleSpawner: {fileID: 0}
 --- !u!114 &1361119596
 MonoBehaviour:
   m_ObjectHideFlags: 0

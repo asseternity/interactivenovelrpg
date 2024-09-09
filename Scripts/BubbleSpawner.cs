@@ -22,7 +22,7 @@ public class BubbleSpawner : MonoBehaviour
     public Queue<so_dialoguebubble> scheduleEventOrder = new Queue<so_dialoguebubble>();
     public GameObject scheduleCanvas;
     so_dialoguebubble firstInSchedule;
-    so_dialoguebubble scheduleEndBubble;
+    public so_dialoguebubble scheduleEndBubble;
     public so_dialoguebubble lastShownBubble;
 
     public void Start()
@@ -35,8 +35,12 @@ public class BubbleSpawner : MonoBehaviour
         Button continueButtonButton = continueButton.GetComponent<Button>();
         continueButtonButton.onClick.RemoveAllListeners();
         continueButtonButton.onClick.AddListener(() => SpawnBubble(startingDialogue));
-        player.ResetStats();
         scheduleCanvas.gameObject.SetActive(false);
+    }
+
+    public void ResetPlayerStats()
+    {
+        player.ResetStats();
     }
 
     public void SpawnBubble(so_dialoguebubble dialogue)
@@ -643,8 +647,6 @@ public class BubbleSpawner : MonoBehaviour
 // major:
 //      - whichever classes you pick for whichever day - you get asked logic questions and depending on your answer you get more or less of
 //      the stat [NEW CANVAS FOR THIS]
-//      - Main Menu
-//      - Saving
 
 // minor:
 //      - reduce or gain stress and exhaustion throughout
