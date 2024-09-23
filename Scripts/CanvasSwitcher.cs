@@ -14,6 +14,7 @@ public class CanvasSwitcher : MonoBehaviour
     public Canvas scheduleCanvas;
     public Canvas saveSlotsUI;
     public Canvas loadSlotsUI;
+    public Canvas canvasOpenedBeforeLoadSlots;
 
     public void Start()
     {
@@ -160,6 +161,7 @@ public class CanvasSwitcher : MonoBehaviour
     public void LoadSlotsBack()
     {
         loadSlotsUI.gameObject.SetActive(false);
-        mainMenuCanvas.gameObject.SetActive(true);
+        canvasOpenedBeforeLoadSlots.gameObject.SetActive(true);
+        canvasOpenedBeforeLoadSlots = null;
     }
 }

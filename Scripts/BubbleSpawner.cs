@@ -645,6 +645,7 @@ public class BubbleSpawner : MonoBehaviour
 //      - regular ability checks paint bubbles like insight checks
 
 // major:
+//      - think about appealing design and concept a bit, without making art or changing the concept. like "our life"
 //      - whichever classes you pick for whichever day - you get asked logic questions and depending on your answer you get more or less of
 //      the stat [NEW CANVAS FOR THIS]
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -139,8 +140,23 @@ public class SaveButtonOperator : MonoBehaviour
 
     public void MoveToLoadSlotSelection()
     {
+        // remember which window was open (for back button)
+        Canvas MainMenuUI = MainMenuCanvas.GetComponent<Canvas>();
+        Canvas PauseUI = PauseCanvas.GetComponent<Canvas>();
+        CanvasSwitcher canvasSwitcherScript = CanvasSwitcher.GetComponent<CanvasSwitcher>();
+
+        if (MainMenuUI.isActiveAndEnabled)
+        {
+            canvasSwitcherScript.canvasOpenedBeforeLoadSlots = MainMenuUI;
+        }
+        else
+        {
+            canvasSwitcherScript.canvasOpenedBeforeLoadSlots = PauseUI;
+        }
+        // switch canvases
         Debug.Log("MoveToLoadSlotSelection() called!");
         MainMenuCanvas.SetActive(false);
+        PauseCanvas.SetActive(false);
         LoadSlotPickerCanvas.SetActive(true);
         // this needs to populate the slots with proper names
         string savePath = Application.persistentDataPath + "/save";
@@ -149,12 +165,12 @@ public class SaveButtonOperator : MonoBehaviour
             string eachSavePath = savePath + i.ToString();
             if (Directory.Exists(eachSavePath))
             {
-                // searching for data
-                string eachLoadSlotButtonName = "LoadSlotButton" + i.ToString();
+                // searching for load slot text components
                 Transform LoadSlotPickerContainerTransform = LoadSlotPickerCanvas.transform.Find(
                     "LoadSlotPickerContainer"
                 );
                 GameObject LoadSlotPickerContainer = LoadSlotPickerContainerTransform.gameObject;
+                string eachLoadSlotButtonName = "LoadSlotButton" + i.ToString();
                 Transform eachLoadSlotButtonTransform = LoadSlotPickerContainer.transform.Find(
                     eachLoadSlotButtonName
                 );
@@ -188,5 +204,5 @@ public class SaveButtonOperator : MonoBehaviour
     }
 }
 
+// bug: load slots' text is filled for every slot, even if there's only 1 save data
 // to fix: fill the boxes for OVERsaving
-// to fix: load during gameplay
