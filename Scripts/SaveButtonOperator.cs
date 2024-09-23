@@ -15,7 +15,6 @@ public class SaveButtonOperator : MonoBehaviour
     public GameObject MainMenuCanvas;
     public GameObject SaveSlotPickerCanvas;
     public GameObject LoadSlotPickerCanvas;
-    public so_dialoguebubble tempBubble;
     public GameObject CanvasSwitcher;
 
     public void SaveGame(int slot, GameObject saveSlotButton)
@@ -73,6 +72,20 @@ public class SaveButtonOperator : MonoBehaviour
         }
         string saveTitle = lastBubble.sentences[saveBubbleNumber];
         saveSlotButtonText.text = saveTitle;
+
+        // change the SaveSlotClickFunction's slotFilled
+        Transform LoadSlotPickerContainerTransform = LoadSlotPickerCanvas.transform.Find(
+            "LoadSlotPickerContainer"
+        );
+        GameObject LoadSlotPickerContainer = LoadSlotPickerContainerTransform.gameObject;
+        string eachLoadSlotButtonName = "LoadSlotButton" + slot;
+        Transform eachLoadSlotButtonTransform = LoadSlotPickerContainer.transform.Find(
+            eachLoadSlotButtonName
+        );
+        GameObject eachLoadSlotButton = eachLoadSlotButtonTransform.gameObject;
+        SaveSlotClickFunction eachLoadSlotScript =
+            eachLoadSlotButton.GetComponent<SaveSlotClickFunction>();
+        eachLoadSlotScript.slotFilled = true;
 
         // inform player
         Debug.Log("Data saved in: " + savePath);
@@ -144,7 +157,6 @@ public class SaveButtonOperator : MonoBehaviour
         Canvas MainMenuUI = MainMenuCanvas.GetComponent<Canvas>();
         Canvas PauseUI = PauseCanvas.GetComponent<Canvas>();
         CanvasSwitcher canvasSwitcherScript = CanvasSwitcher.GetComponent<CanvasSwitcher>();
-
         if (MainMenuUI.isActiveAndEnabled)
         {
             canvasSwitcherScript.canvasOpenedBeforeLoadSlots = MainMenuUI;
@@ -176,13 +188,11 @@ public class SaveButtonOperator : MonoBehaviour
                 );
                 GameObject eachLoadSlotButton = eachLoadSlotButtonTransform.gameObject;
                 Text buttonText = eachLoadSlotButton.GetComponentInChildren<Text>();
-                // grab and store the bubble to grab the so_bubble object
+                // read the save data
                 string eachBubbleLoadPath = eachSavePath + "/bubble.json";
                 string bubble_json = File.ReadAllText(eachBubbleLoadPath);
-                if (tempBubble == null)
-                {
-                    tempBubble = ScriptableObject.CreateInstance<so_dialoguebubble>();
-                }
+                // grab and store the bubble to grab the so_bubble object
+                so_dialoguebubble tempBubble = ScriptableObject.CreateInstance<so_dialoguebubble>();
                 JsonUtility.FromJsonOverwrite(bubble_json, tempBubble);
                 // tempBubble = JsonUtility.FromJson<so_dialoguebubble>(bubble_json);
                 // grab and store bubble number to store the particular sentence in the bubble
@@ -199,10 +209,14 @@ public class SaveButtonOperator : MonoBehaviour
                     saveBubbleNumber = tempBubbleNumber;
                 }
                 buttonText.text = tempBubble.sentences[saveBubbleNumber];
+                // clear text if the slot is not filled
+                SaveSlotClickFunction eachLoadSlotScript =
+                    eachLoadSlotButton.GetComponent<SaveSlotClickFunction>();
+                if (!eachLoadSlotScript.slotFilled)
+                {
+                    buttonText.text = "Empty Slot " + i.ToString();
+                }
             }
         }
     }
 }
-
-// bug: load slots' text is filled for every slot, even if there's only 1 save data
-// to fix: fill the boxes for OVERsaving
