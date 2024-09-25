@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -62,7 +64,10 @@ public class TextParser : MonoBehaviour
                 // assign bubble to every line
                 for (int i = 0; i < numberOfSentences; i++)
                 {
-                    bubbles[bubbles.Count - 1].bubbles[i] = sprite;
+                    Sprite[] localArray = bubbles[bubbles.Count - 1].bubbles;
+                    Array.Resize(ref localArray, localArray.Length + 1);
+                    localArray[localArray.Length - 1] = sprite;
+                    bubbles[bubbles.Count - 1].bubbles = localArray;
                 }
             }
             else if (line.StartsWith("StatChange:"))
@@ -70,64 +75,141 @@ public class TextParser : MonoBehaviour
                 // assign to stat changes
                 string instruction = line.Split(":")[1].Trim();
                 string[] statChanges = instruction.Split(",");
-                bubbles[bubbles.Count - 1].statChanges[0] = statChanges[0];
-                bubbles[bubbles.Count - 1].statChanges[1] = statChanges[1];
-                bubbles[bubbles.Count - 1].statChanges[2] = statChanges[2];
+
+                Array.Resize(ref bubbles[bubbles.Count - 1].statChanges, statChanges.Length);
+                for (int i = 0; i < statChanges.Length; i++)
+                {
+                    bubbles[bubbles.Count - 1].statChanges[i] = statChanges[i];
+                }
             }
             else if (line.StartsWith("Sentences:")) { }
             else if (line.StartsWith(" - "))
             {
                 // assign it to sentences[]
-                string actualDialogue = line.Split(":")[1].Trim();
-                bubbles[bubbles.Count - 1].sentences[
-                    bubbles[bubbles.Count - 1].sentences.Length - 1
-                ] = actualDialogue;
+                string actualDialogue = line.Substring(3).Trim();
+                string[] sentences = bubbles[bubbles.Count - 1].sentences;
+                Array.Resize(ref sentences, sentences.Length + 1);
+                sentences[sentences.Length - 1] = actualDialogue;
+                bubbles[bubbles.Count - 1].sentences = sentences;
+
+                // requirements
+                if (actualDialogue.Contains("*"))
+                {
+                    string requirement = actualDialogue.Split("*")[1].Trim();
+                    string[] currentReqs = bubbles[bubbles.Count - 1].requirements;
+                    Array.Resize(ref currentReqs, currentReqs.Length + 1);
+                    currentReqs[currentReqs.Length - 1] = requirement;
+                    bubbles[bubbles.Count - 1].requirements = currentReqs;
+                }
             }
             else if (line.StartsWith("Image:"))
             {
+                // resize the array to how many sentences there are
+                for (int i = 0; i < numberOfSentences; i++)
+                {
+                    Sprite[] localArray = bubbles[bubbles.Count - 1].images;
+                    Array.Resize(ref localArray, localArray.Length + 1);
+                    bubbles[bubbles.Count - 1].images = localArray;
+                }
                 // load a sprite from path
+                string spritePath = line.Split(":")[1].Trim();
+                Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+                // apply it to the line that is "IMAGE"
+                for (int i = 0; i < bubbles[bubbles.Count - 1].sentences.Length; i++)
+                {
+                    if (bubbles[bubbles.Count - 1].sentences[i].StartsWith("IMAGE"))
+                    {
+                        bubbles[bubbles.Count - 1].images[i] = sprite;
+                    }
+                }
             }
-            else if (line.StartsWith("EndType:"))
-            {
-                // just for me
-            }
+            else if (line.StartsWith("EndType:")) { }
             else if (line.StartsWith("Choices:"))
             {
                 // put in choices[]
+                string[] choices = line.Substring(8).Trim().Split(',');
+                bubbles[bubbles.Count - 1].choices = choices;
             }
             else if (line.StartsWith("Consequences:"))
             {
+                string[] consequenceNames = line.Substring(13).Trim().Split(',');
+                Array.Resize(ref bubbles[bubbles.Count - 1].consequences, consequenceNames.Length);
                 // find SOs by names of bubbles
                 // put in consequences[]
+                for (int i = 0; i < consequenceNames.Length; i++)
+                {
+                    so_dialoguebubble consequence = FindBubbleByName(
+                        bubbles,
+                        consequenceNames[i].Trim()
+                    );
+                    bubbles[bubbles.Count - 1].consequences[i] = consequence;
+                }
             }
             else if (line.StartsWith("Labels:"))
             {
                 // put in labels[]
+                string[] labels = line.Substring(8).Trim().Split(',');
+                bubbles[bubbles.Count - 1].labels = labels;
             }
             else if (line.StartsWith("NextBubble:"))
             {
                 // find SO by name of bubble
                 // put in NextBubble
+                string nextBubbleName = line.Split(":")[1].Trim();
+                bubbles[bubbles.Count - 1].noChoiceNextDialogue = FindBubbleByName(
+                    bubbles,
+                    nextBubbleName
+                );
             }
             else if (line.StartsWith("AbilityCheck:"))
             {
                 // find SO_AC by path
+                string abilityCheckPath = line.Split(":")[1].Trim();
                 // put in Ability Check
+                bubbles[bubbles.Count - 1].abilityCheck =
+                    AssetDatabase.LoadAssetAtPath<so_abilitycheck>(abilityCheckPath);
             }
             else if (line.StartsWith("Win:"))
             {
-                // find SO by name of bubble
-                // put in bubble after win
+                // Assign abilityCheckSuccessPath by SO name
+                string winBubbleName = line.Split(":")[1].Trim();
+                bubbles[bubbles.Count - 1].abilityCheckSuccessPath = FindBubbleByName(
+                    bubbles,
+                    winBubbleName
+                );
             }
             else if (line.StartsWith("Lose:"))
             {
-                // find SO by name of bubble
-                // put in bubble after loss
+                // Assign abilityCheckFailurePath by SO name
+                string loseBubbleName = line.Split(":")[1].Trim();
+                bubbles[bubbles.Count - 1].abilityCheckFailurePath = FindBubbleByName(
+                    bubbles,
+                    loseBubbleName
+                );
+            }
+            else if (line.StartsWith("---"))
+            {
+                // at the end add one more sentence with "END"
+                string[] sentences = bubbles[bubbles.Count - 1].sentences;
+                Array.Resize(ref sentences, sentences.Length + 1);
+                sentences[sentences.Length - 1] = "END";
+                bubbles[bubbles.Count - 1].sentences = sentences;
+                // Reset sentence count for the new bubble
+                numberOfSentences = 0;
             }
         }
 
-        // at the end add one more sentence with "END"
-
         return bubbles;
+    }
+
+    private static so_dialoguebubble FindBubbleByName(List<so_dialoguebubble> bubbles, string name)
+    {
+        // Helper function to find a dialogue bubble by its name
+        foreach (so_dialoguebubble bubble in bubbles)
+        {
+            if (bubble.name == name)
+                return bubble;
+        }
+        return null;
     }
 }

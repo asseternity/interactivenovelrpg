@@ -1,10 +1,10 @@
 # DialogueBubble1
 BubbleSprite: "/assets/path/bubble1"
 Sentences:
- - :Hello![]
- - :Hello again![requirement]
- - :Hello third time![requirement]
-Image: (optional)
+ - Hello!*
+ - Hello again!*requirement
+ - Hello third time!*requirement
+Image: (optional path)
 EndType: simple/choice/abilitycheck/schedule
 Choices: "2", "3"
 StatChange: EHX+10,STR+50,STR-50
@@ -14,3 +14,4 @@ NextBubble: bubble4
 AbilityCheck: "/assets/path/so_abilityCheck 1"
 Win: bubble2
 Lose: bubble3
+---
