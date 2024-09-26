@@ -18,11 +18,14 @@ public class TextParser : MonoBehaviour
             return;
         }
 
-        List<so_dialoguebubble> bubbles = ParseFile(path);
+        List<so_dialoguebubble> finalBubbles = ParseFile(path);
 
-        foreach (so_dialoguebubble bubble in bubbles)
+        FillNextBubbles(finalBubbles, path);
+
+        foreach (so_dialoguebubble bubble in finalBubbles)
         {
-            AssetDatabase.CreateAsset(bubble, $"Assets/{bubble.name}");
+            string assetPath = $"Assets/Parser/SO_DB/{bubble.name}.asset";
+            AssetDatabase.CreateAsset(bubble, assetPath);
         }
 
         AssetDatabase.SaveAssets();
@@ -64,6 +67,10 @@ public class TextParser : MonoBehaviour
                 // assign bubble to every line
                 for (int i = 0; i < numberOfSentences; i++)
                 {
+                    if (bubbles[bubbles.Count - 1].bubbles == null)
+                    {
+                        bubbles[bubbles.Count - 1].bubbles = new Sprite[0];
+                    }
                     Sprite[] localArray = bubbles[bubbles.Count - 1].bubbles;
                     Array.Resize(ref localArray, localArray.Length + 1);
                     localArray[localArray.Length - 1] = sprite;
@@ -87,6 +94,10 @@ public class TextParser : MonoBehaviour
             {
                 // assign it to sentences[]
                 string actualDialogue = line.Substring(3).Trim();
+                if (bubbles[bubbles.Count - 1].sentences == null)
+                {
+                    bubbles[bubbles.Count - 1].sentences = new string[0];
+                }
                 string[] sentences = bubbles[bubbles.Count - 1].sentences;
                 Array.Resize(ref sentences, sentences.Length + 1);
                 sentences[sentences.Length - 1] = actualDialogue;
@@ -96,6 +107,10 @@ public class TextParser : MonoBehaviour
                 if (actualDialogue.Contains("*"))
                 {
                     string requirement = actualDialogue.Split("*")[1].Trim();
+                    if (bubbles[bubbles.Count - 1].requirements == null)
+                    {
+                        bubbles[bubbles.Count - 1].requirements = new string[0];
+                    }
                     string[] currentReqs = bubbles[bubbles.Count - 1].requirements;
                     Array.Resize(ref currentReqs, currentReqs.Length + 1);
                     currentReqs[currentReqs.Length - 1] = requirement;
@@ -107,6 +122,10 @@ public class TextParser : MonoBehaviour
                 // resize the array to how many sentences there are
                 for (int i = 0; i < numberOfSentences; i++)
                 {
+                    if (bubbles[bubbles.Count - 1].images == null)
+                    {
+                        bubbles[bubbles.Count - 1].images = new Sprite[0];
+                    }
                     Sprite[] localArray = bubbles[bubbles.Count - 1].images;
                     Array.Resize(ref localArray, localArray.Length + 1);
                     bubbles[bubbles.Count - 1].images = localArray;
@@ -133,6 +152,10 @@ public class TextParser : MonoBehaviour
             else if (line.StartsWith("Consequences:"))
             {
                 string[] consequenceNames = line.Substring(13).Trim().Split(',');
+                if (bubbles[bubbles.Count - 1].consequences == null)
+                {
+                    bubbles[bubbles.Count - 1].consequences = new so_dialoguebubble[0];
+                }
                 Array.Resize(ref bubbles[bubbles.Count - 1].consequences, consequenceNames.Length);
                 // find SOs by names of bubbles
                 // put in consequences[]
@@ -148,8 +171,13 @@ public class TextParser : MonoBehaviour
             else if (line.StartsWith("Labels:"))
             {
                 // put in labels[]
-                string[] labels = line.Substring(8).Trim().Split(',');
-                bubbles[bubbles.Count - 1].labels = labels;
+                string labelCheck = line.Split(':')[1].Trim();
+                string[] labels = new string[0];
+                if (labelCheck != "")
+                {
+                    labels = line.Substring(8).Trim().Split(',');
+                    bubbles[bubbles.Count - 1].labels = labels;
+                }
             }
             else if (line.StartsWith("NextBubble:"))
             {
@@ -166,6 +194,7 @@ public class TextParser : MonoBehaviour
                 // find SO_AC by path
                 string abilityCheckPath = line.Split(":")[1].Trim();
                 // put in Ability Check
+                Debug.Log(AssetDatabase.LoadAssetAtPath<so_abilitycheck>(abilityCheckPath));
                 bubbles[bubbles.Count - 1].abilityCheck =
                     AssetDatabase.LoadAssetAtPath<so_abilitycheck>(abilityCheckPath);
             }
@@ -200,6 +229,12 @@ public class TextParser : MonoBehaviour
         }
 
         return bubbles;
+    }
+
+    private static void FillNextBubbles(List<so_dialoguebubble> bubbles, string path)
+    {
+        string[] lines = File.ReadAllLines(path);
+        foreach (string line in lines) { }
     }
 
     private static so_dialoguebubble FindBubbleByName(List<so_dialoguebubble> bubbles, string name)
