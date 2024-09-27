@@ -1,10 +1,11 @@
 # bubble1
-BubbleSprite: Assets/Resources/hand2/hand2_1
 Sentences:
- - Hello!*
+ - Hello!
  - Hello again!*someReq1
+ - IMAGE
  - Hello third time!*someReq2
-Image: Assets/Resources/HandDrawnImages/0e197e68103c2c222f6759bc37723611.jpg
+BubbleSprite: Assets/Resources/hand2.png/hand2_1
+Image: Assets/Resources/HandDrawnImages/0e197e68103c2c222f6759bc37723611.jpg/0e197e68103c2c222f6759bc37723611
 EndType: simple/choice/abilitycheck/schedule
 Choices: 2,3
 StatChange: EHX+10,STR+50
@@ -16,11 +17,11 @@ Win: bubble2
 Lose: bubble3
 ---
 # bubble2
-BubbleSprite: Assets/Resources/hand2/hand2_1
 Sentences:
  - Hello!*
  - Hello again!*someReq1
  - Hello third time!*someReq2
+BubbleSprite: Assets/Resources/hand2.png/hand2_1
 Image: (optional path)
 EndType: simple/choice/abilitycheck/schedule
 Choices: 
@@ -33,11 +34,11 @@ Win:
 Lose:
 ---
 # bubble3
-BubbleSprite: Assets/Resources/hand2/hand2_1
 Sentences:
  - Hello!*
  - Hello again!*someReq1
  - Hello third time!*someReq2
+BubbleSprite: Assets/Resources/hand2.png/hand2_1
 Image: (optional path)
 EndType: simple/choice/abilitycheck/schedule
 Choices: 
@@ -49,3 +50,19 @@ AbilityCheck:
 Win: 
 Lose:
 ---
+# bubble4
+Sentences:
+ - Hello!*
+ - Hello again!*someReq1
+ - Hello third time!*someReq2
+BubbleSprite: Assets/Resources/hand2.png/hand2_1
+Image: (optional path)
+EndType: simple/choice/abilitycheck/schedule
+Choices: 
+StatChange:
+Consequences:
+Labels: 
+NextBubble:
+AbilityCheck:
+Win: 
+Lose:
